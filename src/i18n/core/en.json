@@ -1,0 +1,86 @@
+{
+	"common": {
+		"add": "Add",
+		"all": "All",
+		"back": "Back",
+		"cancel": "Cancel",
+		"close": "Close",
+		"confirm": "Confirm",
+		"create": "Create",
+		"date": {
+			"day": "Day",
+			"month": "Month",
+			"year": "Year"
+		},
+		"delete": "Delete",
+		"details": "Details",
+		"edit": "Edit",
+		"error": "Error",
+		"list_empty": "List is empty",
+		"placeholder_none": "(None)",
+		"save": "Save",
+		"search": "Search",
+		"update": "Update"
+	},
+	"core": {
+		"misc": {
+			"access_denied": {
+				"content": "You do not have the necessary permissions. Please contact admins.",
+				"title": "Access Denied"
+			},
+			"error": {
+				"content": "Requested resource is not available.",
+				"title": "Error Occurred"
+			},
+			"go_to_home": "Go to Home",
+			"not_found": {
+				"content": "Requested resource is not available.",
+				"title": "Not Found"
+			}
+		},
+		"toast": {
+			"title_default": "Alert",
+			"title_error": "Error",
+			"title_success": "Success",
+			"title_warning": "Warning"
+		},
+		"user_menu": {
+			"change_pwd": "Change password",
+			"logout": "Logout",
+			"profile": "Profile"
+		}
+	},
+	"profile": {
+		"change_pwd": {
+			"alert": {
+				"error": "Change password failed",
+				"missing_password": "Current password is empty",
+				"pwd_not_match": "Password is invalid or not match",
+				"success": "Change password successfully"
+			},
+			"current_pwd": "Current Password",
+			"current_pwd_placeholder": "Input current password",
+			"new_pwd": "New Password",
+			"new_pwd_placeholder": "Input new password",
+			"title": "Change Password"
+		},
+		"update_avatar": {
+			"alert": {
+				"error": "Update avatar failed",
+				"success": "Update avatar successfully"
+			},
+			"title": "Update Avatar"
+		},
+		"update_profile": {
+			"alert": {
+				"error": "Update profile failed",
+				"invalid_email": "Email is invalid",
+				"missing_name": "Name is empty",
+				"success": "Update profile successfully"
+			},
+			"email": "Email",
+			"full_name": "Full Name",
+			"title": "Update Profile"
+		}
+	}
+}

@@ -1,0 +1,61 @@
+<p-dialog [header]="isCreate ? ('question.create_title' | translate) : ('question.detail_title' | translate)"
+    [(visible)]="isShowModalDetails"
+    [modal]="true" [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="border-top-1 border-bottom-1 surface-border mb-4 py-4">
+        <div class="flex flex-column gap-2 mb-3">
+            <label htmlFor="questionName" class="font-semibold required">
+                Câu hỏi
+            </label>
+            <input pInputText id="questionName" [(ngModel)]="modalData.name"
+                [ngClass]="{'ng-invalid ng-dirty': modalData.nameInvalid}" />
+        </div>
+        <div class="flex flex-column gap-2 mb-3">
+            <label class="font-semibold required">Các đáp án</label>
+
+            <div *ngFor="let a of modalData.listAnswers || []" class="flex">
+                <input pInputText id="answer1"
+                    class="ml-4 mr-2 flex-grow-1"
+                    placeholder="Đáp án ..."
+                    [(ngModel)]="a.value"
+                    [ngClass]="{'ng-invalid ng-dirty': a.invalid}" />
+
+                <button pButton pRipple [label]="a.id === modalData.trueAnswer ? 'Đúng' : 'Sai'"
+                    class="w-7rem"
+                    [ngClass]="{
+                        'p-button-success': a.id === modalData.trueAnswer, 
+                        'p-button-danger':  a.id !== modalData.trueAnswer
+                    }"
+                    (click)="selectTrueAnswer(a)">
+                </button>
+            </div>
+        </div>
+        <div class="flex flex-column gap-2 mb-3">
+            <label htmlFor="questionContent" class="font-semibold">
+                Chú thích/bổ sung
+            </label>
+
+            <textarea rows="2" pInputTextarea id="questionContent"
+                [(ngModel)]="modalData.content">
+            </textarea>
+        </div>
+        <div class="flex flex-column gap-2">
+            <label htmlFor="questionExplain" class="font-semibold">Lời giải</label>
+
+            <textarea rows="2" pInputTextarea id="questionExplain"
+                [(ngModel)]="modalData.explain">
+            </textarea>
+        </div>
+    </div>
+    <div class="p-dialog-footer p-0">
+        <button pButton pRipple label="{{ 'common.close' | translate }}"
+            icon="pi pi-times" class="p-button-secondary"
+            (click)="isShowModalDetails = false">
+        </button>
+        <button pButton pRipple label="{{ 'common.save' | translate }}"
+            icon="pi pi-check" class=""
+            (click)="saveQuestion()">
+        </button>
+    </div>
+</p-dialog>

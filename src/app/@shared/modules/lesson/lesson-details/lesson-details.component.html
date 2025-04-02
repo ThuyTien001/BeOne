@@ -1,0 +1,136 @@
+<div class="grid">
+    <div class="col-12 lg:col-8 pb-0">
+        <div class="card card-shadow">
+            <ng-container *ngIf="isLoading.value || isLoadingLesson.value">
+                <p-skeleton width="70%" height="3rem" styleClass="mb-2"></p-skeleton>
+                <div class="my-6 w-full">
+                    <p-skeleton width="100%" height="20rem"></p-skeleton>
+                </div>
+                <div>
+                    <p-skeleton width="10rem" height="1.5rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="100%" height="10rem" styleClass="mb-3"></p-skeleton>
+                    <p-skeleton width="50%" height="1.5rem" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="100%" height="5rem" styleClass="mb-2"></p-skeleton>
+                </div>
+            </ng-container>
+
+            <div [ngClass]="{ 'hidden': isLoading.value || isLoadingLesson.value }">
+                <div class="flex justify-content-between">
+                    <h3 class="mb-0">
+                        {{ currentLesson?.getFormattedValue('name') }}
+                    </h3>
+                    <button pButton pRipple
+                        icon="pi pi-arrow-left"
+                        class="p-button-secondary p-button-outlined"
+                        (click)="onClose.next(true)">
+                    </button>
+                </div>
+
+                <div class="my-6 w-full" [ngClass]="{'hidden': !lessonVideoUrl}">
+                    <lms-video-player #videoPlayer
+                        [url]="lessonVideoUrl">
+                    </lms-video-player>
+                </div>
+
+                <div [innerHTML]="currentLesson?.getFormattedValue('content')" style="zoom: 1.1">
+                </div>
+            </div>
+        </div>
+        <div class="card card-shadow flex justify-content-between"
+            [spinner]="isLoadingBtn.value">
+            <div>
+                <button pButton pRipple
+                    icon="pi pi-download"
+                    class="p-button-secondary p-button-outlined p-button-lg mr-3"
+                    (click)="download()">
+                </button>
+                <button pButton pRipple
+                    icon="pi pi-pencil"
+                    class="p-button-secondary p-button-outlined p-button-lg mr-3">
+                </button>
+                <button pButton pRipple
+                    icon="pi pi-question-circle"
+                    class="p-button-secondary p-button-outlined p-button-lg mr-3">
+                </button>
+            </div>
+            <div>
+                <button pButton pRipple
+                    icon="pi pi-angle-left"
+                    class="p-button-secondary p-button-outlined p-button-lg mr-3"
+                    [disabled]="currentLessonIndex < 1"
+                    (click)="previousLesson()">
+                </button>
+                <button pButton pRipple
+                    icon="pi pi-angle-right"
+                    class="p-button-secondary p-button-outlined p-button-lg"
+                    [disabled]="currentLessonIndex >= listLessons?.length - 1"
+                    (click)="nextLesson()">
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 lg:col-4 pb-0">
+        <div class="card card-shadow">
+            <ng-container *ngIf="isLoading.value">
+                <div class="flex align-content-center border-bottom-1 surface-border pb-4">
+                    <p-skeleton shape="circle" size="5rem"></p-skeleton>
+                    <div class="pl-3 flex flex-column justify-content-center flex-grow-1">
+                        <p-skeleton width="75%" styleClass="mb-2"></p-skeleton>
+                        <p-skeleton width="50%" styleClass="mb-2"></p-skeleton>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                    <p-skeleton width="75%" styleClass="mb-2"></p-skeleton>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!isLoading.value">
+                <div class="flex align-content-center border-bottom-1 surface-border pb-4">
+                    <div class="h-5rem w-5rem">
+                        <lms-avatar [fullSize]="true"></lms-avatar>
+                    </div>
+                    <div class="pl-3 flex flex-column justify-content-center">
+                        <div class="text-900 font-semibold text-xl mb-2">Nguyễn Văn A</div>
+                        <div class="text-500 text-lg">Giáo Viên Toán 10</div>
+                    </div>
+                </div>
+                <p class="mt-4 font-italic">“Hãy biến con số thành những ước mơ!”</p>
+            </ng-container>
+        </div>
+        <div class="card card-shadow">
+            <ng-container *ngIf="isLoading.value">
+                <div class="border-bottom-1 surface-border pb-3">
+                    <p-skeleton width="75%" height="2rem"></p-skeleton>
+                </div>
+
+                <div class="mt-3">
+                    <p-skeleton width="90%" height="2.5rem" styleClass="mb-3"></p-skeleton>
+                    <p-skeleton width="55%" height="2.5rem" styleClass="mb-3"></p-skeleton>
+                    <p-skeleton width="75%" height="2.5rem" styleClass="mb-3"></p-skeleton>
+                    <p-skeleton width="55%" height="2.5rem" styleClass="mb-3"></p-skeleton>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="!isLoading.value">
+                <h5 class="border-bottom-1 surface-border pb-3">
+                    Danh sách bài học
+                </h5>
+                <div>
+                    <p-listbox [options]="listLessons"
+                        [(ngModel)]="currentLesson"
+                        (ngModelChange)="onChangeLesson()"
+                        optionLabel="name" class="p-0">
+                        <ng-template let-item pTemplate="item">
+                            <div class="flex align-items-center gap-2">
+                                <div>{{ item.getFormattedValue('name') }}</div>
+                            </div>
+                        </ng-template>
+                    </p-listbox>
+                </div>
+            </ng-container>
+
+        </div>
+    </div>
+</div>

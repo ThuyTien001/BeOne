@@ -1,0 +1,12 @@
+<div>
+    <h4 class="text-center mt-3">{{ exercise?.getFormattedValue('name') }}</h4>
+    <ng-container *ngFor="let q of listQuestions; let i = index">
+        <lms-question-view
+            [question]="q"
+            [questionPrefix]="i + 1 + '. '"
+            [showExplain]="showResult"
+            [showResult]="showResult"
+            class="mb-3">
+        </lms-question-view>
+    </ng-container>
+</div>

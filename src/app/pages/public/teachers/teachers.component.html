@@ -1,0 +1,54 @@
+<div>
+    <div id="hero-section" class="relative">
+        <div class="flex flex-column
+            px-5 md:pl-7 md:pr-5 md:pt-0
+            md:w-9 lg:w-6 xl:w-5
+            absolute md:relative z-2">
+            <h1 class="text-primary font-bold
+                text-5xl
+                lg:text-6xl
+                xl:text-7xl
+                mb-4
+                scalein animation-duration-500">
+                Nghệ thuật dạy học chính là nghệ thuật giúp ai đó khám phá
+            </h1>
+
+            <p class="w-10 text-2xl lg:text-4xl">
+                Mark van Doren
+            </p>
+
+            <button pButton pRipple label="Tìm lớp học"
+                id="btn-find-class"
+                class="p-button-danger w-min white-space-nowrap text-3xl
+                scalein animation-duration-500 btn-find-class">
+            </button>
+        </div>
+    </div>
+
+
+    <div *ngFor="let teacher of listTeachers"
+        [class]="'w-full ' + teacher.theme"
+        [ngStyle]="{backgroundImage: 'url(' + teacher.url + ')'}">
+        <div class="grid
+            w-12 md:w-10
+            xl:w-10 px-4 pt-7">
+            <div class="teacher-info
+                col-12 lg:col-6 "
+                [ngClass]="{'lg:col-offset-6': teacher.theme === 'teacher-profile-blue'}">
+                <h1 class="text-5xl lg:text-6xl xl:text-7xl">
+                    {{ teacher.title }}
+                </h1>
+                <h3 class="my-0">
+                    {{ teacher.grade }}
+                </h3>
+                <h3 class="mt-0">
+                    {{ teacher.school }}
+                </h3>
+                <p class="text-2xl">
+                    {{ teacher.description }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>

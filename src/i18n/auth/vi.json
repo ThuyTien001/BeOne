@@ -1,0 +1,32 @@
+{
+	"auth": {
+		"confirm_password": "Xác nhận mật khẩu",
+		"confirm_password_placeholder": "Nhập lại mật khẩu của bạn",
+		"create_account_content": "Bạn chưa có tài khoản?",
+		"create_account_link": "Tạo ngay!",
+		"invalid_code": "Mã xác nhận không hợp lệ",
+		"invalid_password": "Mật khẩu không hợp lệ hoặc không khớp",
+		"invalid_phone": "Số điên thoại không hợp lệ",
+		"invalid_username_password": "Tài khoản/mật khẩu không chính xác",
+		"login": "Đăng nhập",
+		"login_by_code": "Đăng nhập bằng mã OTP",
+		"login_by_password": "Đăng nhập bằng mật khẩu",
+		"login_failed": "Đăng nhập thất bại",
+		"logout": "Đăng xuất",
+		"missing_phone": "Vui lòng nhập số điện thoại",
+		"mobile_already_exists": "Số điện thoại đã được sử dụng",
+		"next": "Tiếp tục",
+		"password": "Mật khẩu",
+		"password_placeholder": "Mật khẩu",
+		"phone_number": "Số điện thoại",
+		"phone_number_placeholder": "Nhập số điện thoại của bạn",
+		"send_code": "Gửi mã xác nhận",
+		"sign_up": "Đăng ký",
+		"sign_up_failed": "Đăng ký thất bại, vui lòng thử lại sau.",
+		"user_display_name": "Tên của bạn",
+		"username": "Tài khoản",
+		"username_placeholder": "Tài khoản",
+		"verify_code": "Mã xác nhận",
+		"verify_code_placeholder": "Nhập mã xác nhận"
+	}
+}

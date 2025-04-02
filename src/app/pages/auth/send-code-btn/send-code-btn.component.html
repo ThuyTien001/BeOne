@@ -1,0 +1,12 @@
+<label class="block text-900 font-medium mb-2 verify-code-label">
+    {{ 'auth.verify_code' | translate }}
+</label>
+<div class="p-inputgroup w-full md:w-30rem mb-4">
+    <input type="text" pInputText [(ngModel)]="verifyCode" placeholder="{{'auth.verify_code_placeholder' | translate}}">
+    <button type="button" pButton pRipple
+        class="text-sm"
+        label="{{ sendCodeBtnLabel }}"
+        [disabled]="timer.current !== 0"
+        (click)="sendVerifyCode()">
+    </button>
+</div>

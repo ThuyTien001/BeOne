@@ -1,0 +1,30 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <!-- <lms-main-logo className="mb-5 mt-2 w-20rem flex-shrink-0">
+        </lms-main-logo> -->
+        <div
+            style="border-radius: 2rem; padding:0.3rem; background: linear-gradient(180deg, rgba(247, 149, 48, 0.4) 10%, rgba(247, 149, 48, 0) 30%);">
+            <div class="w-full surface-card pt-8 pb-6 px-5 sm:px-8 flex flex-column align-items-center"
+                style="border-radius:1.8rem">
+                <div class="grid flex flex-column align-items-center">
+                    <div class="flex justify-content-center align-items-center bg-orange-500 border-circle"
+                        style="width:3.2rem; height:3.2rem;">
+                        <i class="text-50 pi pi-fw pi-lock text-2xl"></i>
+                    </div>
+                    <h1 class="text-900 font-bold text-4xl lg:text-5xl mb-2">
+                        {{ 'core.misc.access_denied.title' | translate }}
+                    </h1>
+                    <span class="text-600 mb-5 text-center">
+                        {{ 'core.misc.access_denied.content' | translate }}
+                    </span>
+
+                    <img src="assets/images/misc/asset-access.svg" alt="Access denied" class="" width="80%">
+                    <button pButton pRipple icon="pi pi-arrow-left" class="p-button-text"
+                        [routerLink]="['/']"
+                        label="{{ 'core.misc.go_to_home' | translate}}">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

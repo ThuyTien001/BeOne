@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+
+  mojo-lms-web-prod:
+    container_name: mojo-lms-web-prod
+    image: mojo-lms-web-prod
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        - CONFIG_NAME=production
+    command: /bin/bash -c "envsubst '$$NGINX_HOST $$NGINX_PORT' < /etc/nginx/conf.d/mojo-lms-web > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+    restart: always
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    networks:
+      - prod-network
+    volumes:
+      - ./src:/home/node/mojo-lms-web/src
+    ports:
+      - '7700:80'
+
+networks:
+  prod-network:
+    driver: bridge

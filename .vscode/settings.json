@@ -1,0 +1,10 @@
+{
+   "typescript.tsdk": "./node_modules/typescript/lib",
+   "tslint.enable": false,
+   "search.exclude": {
+       "**/dist": true,
+       "**/.angular": true,
+       "**/*.svg": true,
+   },
+   "explorer.compactFolders": false
+}

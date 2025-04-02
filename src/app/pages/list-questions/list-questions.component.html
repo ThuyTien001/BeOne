@@ -1,0 +1,73 @@
+<div class="page-card card" [spinner]="tableLoading.value">
+    <p-table
+        scrollHeight="flex"
+        [scrollable]="true"
+        [value]="listQuestions"
+
+        selectionMode="single"
+        [(selection)]="selectedQuestion"
+
+        dataKey="id"
+        [lazy]="true"
+        (onLazyLoad)="loadListQuestions($event)"
+
+        [paginator]="true"
+        [totalRecords]="totalRecords"
+
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center">
+                <h5 class="mb-0">
+                    {{ 'question.list_question_title' | translate }}
+                </h5>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" placeholder="Tìm kiếm"
+                        [(ngModel)]="searchValue"
+                        (keydown.enter)="searchQuestion()" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 10rem">Mã câu hỏi</th>
+                <th>Tiêu đề</th>
+                <th style="width: 10rem">Phân loại</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr [pSelectableRow]="item" (dblclick)="onRowDoubleClick(item)">
+                <td>{{ item.getFormattedValue('code') }}</td>
+                <td [mathjax]="item.getFormattedValue('name')"></td>
+                <td>{{ item.getFormattedValue('type') }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <p-button type="button"
+                icon="pi pi-plus"
+                label="{{ 'common.create' | translate }}"
+                (onClick)="showModalDetails()">
+            </p-button>
+            <p-button type="button"
+                icon="pi pi-upload"
+                label="Upload"
+                styleClass="ml-3"
+                (onClick)="showModalUpload()">
+            </p-button>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="4" class="border-none bg-white">
+                    <div class="text-center font-medium py-4">
+                        <span>{{ 'common.list_empty' | translate }}</span>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<lms-question-details-dialog #detailsDialog (save)="saveQuestion($event)"></lms-question-details-dialog>
+
+<lms-upload-questions-dialog #uploadDialog></lms-upload-questions-dialog>

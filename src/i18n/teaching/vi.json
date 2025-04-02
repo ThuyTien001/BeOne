@@ -1,0 +1,24 @@
+{
+	"excerise": {
+		"add_question": "Thêm câu hỏi",
+		"create_title": "Tạo bài tập mới",
+		"detail_title": "",
+		"status": {
+			"completed": "Đã hoàn thành",
+			"pending": "Đã giao",
+			"processing": "Đang thực hiện"
+		}
+	},
+	"question": {
+		"create_title": "Tạo câu hỏi mới",
+		"detail_title": "Chi tiết câu hỏi",
+		"list_question_title": "Danh sách câu hỏi",
+		"select_dialog_title": "Chọn câu hỏi",
+		"type": {
+			"multiple": "Trắc nghiệm (nhiều đáp án)",
+			"number": "Số",
+			"single": "Trắc nghiệm",
+			"text": "Văn bản"
+		}
+	}
+}

@@ -1,0 +1,24 @@
+@import '../../../@theme/styles/variables';
+
+:host ::ng-deep {
+    .btn-view-lesson .p-button-icon {
+        padding-top: 1px;
+        margin-right: 1rem;
+        font-size: 1.5rem;
+    }
+
+    .custom-progress-bar .p-progressbar {
+        border-radius: $borderRadius;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .btn-search {
+        height: 2.8rem;
+    }
+
+    .p-paginator {
+        background-color: transparent;
+        padding: 0;
+    }
+}

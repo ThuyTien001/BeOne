@@ -1,0 +1,87 @@
+@import './_variables';
+@import "./_mixins";
+@import "./_preloading";
+@import "./_main";
+@import "./scrollbar";
+@import "./_content";
+@import "./_footer";
+@import "./_responsive";
+@import "./_utils";
+@import "./_typography";
+
+.spinner-container {
+    position: relative;
+}
+
+.p-toast {
+    opacity: 1 !important;
+}
+
+.page-card {
+    height: calc(100vh - 12rem);
+    margin-bottom: 0;
+    overflow-y: auto;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.02),
+        0px 0px 2px rgba(0, 0, 0, 0.05),
+        0px 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.card-shadow {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.card-border {
+    border: 1px solid rgba(0, 0, 0, .125);
+}
+
+label.required::after {
+    content: " *";
+    color: var(--red-500);
+}
+
+// Fix tab title show shadow like button when focus
+.p-tabview .p-tabview-nav li .p-tabview-nav-link:not(.p-disabled):focus {
+    box-shadow: none !important;
+}
+
+.table-beone {
+    tr.row-header th {
+        background-color: #00a1e4;
+        color: white;
+        border-color: #00000030 !important;
+        padding: 0.9rem 1.25rem !important;
+        font-size: 1.15rem;
+        // text-align: left;
+        font-weight: 500;
+
+        &:first-child {
+            border-top-left-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+
+        &:last-child {
+            border-top-right-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+    }
+
+    td {
+        border-color: #00000030 !important;
+        padding: 0.9rem 1.25rem !important;
+        font-size: 1.15rem;
+        // text-align: center !important;
+    }
+
+    .p-datatable-tbody>tr>td {
+        border-width: 0 !important;
+    }
+
+    .p-datatable-tbody>tr:nth-child(even) {
+        background-color: #f5f5f5 !important;
+    }
+}
+
+// Fix input password
+.p-password.p-component eyeicon {
+    margin-right: 0.25rem;
+}

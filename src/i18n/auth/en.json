@@ -1,0 +1,32 @@
+{
+	"auth": {
+		"confirm_password": "Confirm Password",
+		"confirm_password_placeholder": "Re-enter your password",
+		"create_account_content": "Don't have an account?",
+		"create_account_link": "Create today!",
+		"invalid_code": "Verify code invalid",
+		"invalid_password": "Password is invalid or not match",
+		"invalid_phone": "Invalid phone number",
+		"invalid_username_password": "Invalid username/password",
+		"login": "Login",
+		"login_by_code": "Login by OTP Code",
+		"login_by_password": "Login by password",
+		"login_failed": "Login failed",
+		"logout": "Logout",
+		"missing_phone": "Please input phone number",
+		"mobile_already_exists": "The phone number is already in use",
+		"next": "Next",
+		"password": "Password",
+		"password_placeholder": "Password",
+		"phone_number": "Phone Number",
+		"phone_number_placeholder": "Enter your phone number",
+		"send_code": "Send Code",
+		"sign_up": "Sign Up",
+		"sign_up_failed": "Sign up failed, please try again later.",
+		"user_display_name": "Your Name",
+		"username": "Username",
+		"username_placeholder": "Username",
+		"verify_code": "Verify Code",
+		"verify_code_placeholder": "Enter verify code"
+	}
+}

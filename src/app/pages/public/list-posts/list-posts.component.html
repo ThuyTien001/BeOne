@@ -1,0 +1,103 @@
+<div>
+    <div id="hero" class="hero-section relative">
+        <div class="flex flex-column px-4 md:pt-0 md:w-9 lg:w-6 absolute md:relative z-2">
+            <h1 class="text-light-blue font-bold 
+            text-6xl lg:text-6xl mb-6
+            scalein animation-duration-500">
+                Khai Giảng khoá mới
+                <br>Toán Tư Duy
+                <br>02.05.2023
+            </h1>
+
+            <button pButton pRipple label="Tìm lớp học"
+                id="btn-find-class"
+                class="p-button-danger w-min white-space-nowrap text-3xl 
+                scalein animation-duration-500 btn-find-class">
+            </button>
+        </div>
+    </div>
+    <div class="w-full flex justify-content-center pt-4">
+        <div class="grid w-10 md:w-8 xl:w-8 px-4 pb-4 relative">
+            <!-- Anchor Tag for fragment navigate -->
+            <div id="anchor" class="opacity-0 absolute" style="top: -7rem"></div>
+            <div class="w-full flex mt-4">
+                <div *ngFor="let item of listFilters; let i = index"
+                    class="text-xl font-semibold filter-item"
+                    [ngClass]="{'filter-active': filter === item.value}"
+                    (click)="applyFilter(item.value)">
+                    <span *ngIf="i !== 0" class="px-2 text-color">|</span>
+                    <span>{{ item.label }}</span>
+                </div>
+            </div>
+
+            <ng-container *ngIf="isLoading.value">
+                <div class="w-full block lg:flex post-item mb-4 pt-4">
+                    <div class="w-full lg:w-5 h-15rem lg:h-20rem mb-3 lg:mb-0">
+                        <p-skeleton styleClass="w-full h-full"></p-skeleton>
+                    </div>
+                    <div class="w-full lg:w-7 lg:pl-7 pb-3">
+                        <p-skeleton styleClass="w-10 h-3rem"></p-skeleton>
+                        <div class="w-full flex mt-2">
+                            <p-skeleton styleClass="w-7rem h-2rem mr-3"></p-skeleton>
+                            <p-skeleton styleClass="w-12rem h-2rem"></p-skeleton>
+
+                        </div>
+                        <p-skeleton styleClass="w-12 h-4rem mt-4"></p-skeleton>
+                    </div>
+                </div>
+                <div class="w-full block lg:flex post-item mb-4 pt-4">
+                    <div class="w-full lg:w-5 h-15rem lg:h-20rem mb-3 lg:mb-0">
+                        <p-skeleton styleClass="w-full h-full"></p-skeleton>
+                    </div>
+                    <div class="w-full lg:w-7 lg:pl-7 pb-3">
+                        <p-skeleton styleClass="w-10 h-3rem"></p-skeleton>
+                        <div class="w-full flex mt-2">
+                            <p-skeleton styleClass="w-7rem h-2rem mr-3"></p-skeleton>
+                            <p-skeleton styleClass="w-12rem h-2rem"></p-skeleton>
+
+                        </div>
+                        <p-skeleton styleClass="w-12 h-4rem mt-4"></p-skeleton>
+                    </div>
+                </div>
+            </ng-container>
+
+            <div class="w-full post-items-container"
+                [ngClass]="{'hidden': isLoading.value}">
+                <div *ngFor="let post of listPosts"
+                    class="block lg:flex post-item mb-4 pt-4">
+
+                    <div class="w-full lg:w-5
+                        h-15rem lg:h-20rem
+                        mb-3 lg:mb-0
+                        cursor-pointer"
+                        [routerLink]="'/public/post/' + post.id">
+                        <img [src]="post.thumbnail" alt="" class="border-round">
+                    </div>
+                    <div class="w-full lg:w-7 lg:pl-7 pb-3">
+                        <a [routerLink]="'/public/post/' + post.id"
+                            class="text-3xl font-bold text-primary">
+                            {{ post.title }}
+                        </a>
+                        <div class="flex align-items-center mt-2">
+                            <div [class]="'post-tag ' + post.tag">
+                                {{ post.tagLabel }}
+                            </div>
+                            <div class="ml-4 text-600">{{ post.publishDate }}</div>
+                        </div>
+                        <div class="mt-4 text-lg">
+                            {{ post.description }}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <p-paginator #paginator
+                        [first]="0"
+                        [rows]="perPage"
+                        [totalRecords]="totalRecords"
+                        (onPageChange)="onPageChange($event)"></p-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+<div>
+    <div id="hero-section" class="relative">
+        <div class="flex flex-column 
+            px-5 md:pl-7 md:pr-5 md:pt-0 
+            md:w-9 lg:w-6 xl:w-5
+            absolute md:relative z-2">
+            <h1 class="text-white font-bold
+                text-5xl lg:text-6xl xl:text-7xl mb-4
+                scalein animation-duration-500">
+                Toán tư duy lớp 7
+            </h1>
+
+            <p class="text-white w-10 text-2xl lg:text-4xl">
+                Với trang thiết bị hiện đại cùng đội ngũ giáo viên dầy dặn kinh nghiệm đứng lớp và chuyên môn cao
+            </p>
+
+            <button pButton pRipple label="Đăng ký ngay"
+                id="btn-find-class"
+                class="p-button-danger w-min white-space-nowrap text-3xl 
+                scalein animation-duration-500 btn-find-class">
+            </button>
+        </div>
+    </div>
+    <div class="filter-section w-full flex justify-content-center pt-4 relative">
+        <!-- Anchor Tag for fragment navigate -->
+        <div id="list" class="opacity-0 absolute" style="top: -7rem"></div>
+        <div class="w-10 md:w-8 xl:w-8 px-4 py-7">
+            <p class="text-primary text-xl">
+                {{ LABELS.breadcumb }}
+            </p>
+            <h1 class="text-primary text-6xl">
+                {{ LABELS.filter_title }}
+            </h1>
+            <div class="align"></div>
+            <div class="flex flex-column align-items-start xl:flex-row xl:align-items-center gap-4">
+                <div class="flex align-items-center">
+                    <div class="w-6rem font-bold">Khối lớp</div>
+                    <p-dropdown [options]="filterListGrades"
+                        optionLabel="label"
+                        styleClass="w-12rem">
+                    </p-dropdown>
+                </div>
+                <div class="flex align-items-center">
+                    <div class="w-6rem font-bold">Môn học</div>
+                    <p-dropdown [options]="filterListSubjects"
+                        optionLabel="label"
+                        styleClass="w-12rem">
+                    </p-dropdown>
+                </div>
+                <div>
+                    <button pButton pRipple
+                        label="{{ 'common.search' | translate }}"
+                        class="p-button-sm "
+                        (click)="onSearch()">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="list-section" class="w-full flex justify-content-center pt-4">
+        <div class="grid w-11 md:w-8 xl:w-8 px-4 py-5">
+            <div *ngFor="let item of listTeachingClasses"
+                class="col-12 xl:col-6">
+                <div class="class-item card border-round-2xl pt-6 px-5 xl:mr-4">
+                    <h2 class="text-primary">
+                        {{ item.title }}
+                    </h2>
+
+                    <div class="mb-3">
+                        <div class="flex align-content-center font-medium text-lg mb-2">
+                            <i class="pi pi-angle-right text-xl"></i>
+                            <div>{{ LABELS.date_range }}</div>
+                        </div>
+                        <div class="text-lg ml-4">
+                            {{ item.dateRange }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="flex align-content-center font-medium text-lg mb-2">
+                            <i class="pi pi-angle-right text-xl"></i>
+                            <div>{{ LABELS.schedule_time }}</div>
+                        </div>
+                        <div class="text-lg ml-4">
+                            {{ item.scheduleTime }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="flex align-content-center font-medium text-lg mb-2">
+                            <i class="pi pi-angle-right text-xl"></i>
+                            <div>{{ LABELS.teacher }}</div>
+                        </div>
+                        <div class="text-lg ml-4">
+                            {{ item.teacher }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="flex align-content-center font-medium text-lg mb-2">
+                            <i class="pi pi-angle-right text-xl"></i>
+                            <div>{{ LABELS.center }}</div>
+                        </div>
+                        <div class="text-lg ml-4">
+                            {{ item.center }}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div class="flex align-content-center font-medium text-lg mb-2">
+                            <i class="pi pi-angle-right text-xl"></i>
+                            <div>{{ LABELS.phone_number }}</div>
+                        </div>
+                        <div class="text-lg ml-4">
+                            {{ item.phoneNumber }}
+                        </div>
+                    </div>
+                    <button pButton pRipple label="Đăng ký ngay"
+                        class="p-button-lg">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="maps" class="w-full flex flex-column justify-content-center align-items-center pt-4 bg-primary">
+        <div class="w-10 md:w-8 xl:w-8 px-4">
+            <h1 class="text-white text-6xl">
+                {{ LABELS.map_title }}
+            </h1>
+        </div>
+        <div class="w-12 bg-white">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1957601804343!2d106.6648251758076!3d10.796313758824997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175292dd5475ff1%3A0x178a545ad5fc7644!2zNDMgVMOibiBDYW5oLCBQaMaw4budbmcgMSwgVMOibiBCw6xuaCwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5oLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2s!4v1682588968709!5m2!1svi!2s"
+                width="100%" height="500" style="border: 0" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+    </div>
+
+</div>

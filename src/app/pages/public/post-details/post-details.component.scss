@@ -1,0 +1,21 @@
+.title-container {
+    background: linear-gradient(180deg,
+            rgba(2, 0, 36, 0) 0%,
+            rgba(2, 0, 36, 0.3) 40%,
+            rgba(2, 0, 36, 0.9) 100%);
+}
+
+.post-item {
+    object-fit: cover;
+}
+
+.other-post-section {
+    background-color: #f1f8fb;
+
+    ::ng-deep p-carousel {
+        .p-carousel-indicators {
+            display: none;
+        }
+    }
+
+}

@@ -1,0 +1,77 @@
+<p-dialog header="{{ 'question.select_dialog_title' | translate }}"
+    [(visible)]="isShowDialog"
+    [style]="{ width: '70vw', height: '90vh' }"
+    [modal]="true"
+    [draggable]="false"
+    [resizable]="false">
+
+    <p-table
+        class="h-full"
+        scrollHeight="flex"
+        [scrollable]="true"
+        [loading]="tableLoading.value"
+        [value]="listQuestions"
+
+        selectionMode="multiple"
+        [(selection)]="selected"
+
+        dataKey="id"
+        [lazy]="true"
+        (onLazyLoad)="loadListQuestions($event)"
+
+        [paginator]="true"
+        [totalRecords]="totalRecords"
+
+        [rows]="10"
+        [rowsPerPageOptions]="[10, 25, 50]">
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center">
+                <h5 class="mb-0">
+                    Danh sách câu hỏi
+                </h5>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" placeholder="Tìm kiếm"
+                        [(ngModel)]="searchValue"
+                        (keydown.enter)="search()" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 4rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th style="width: 10rem">Mã câu hỏi</th>
+                <th>Tiêu đề</th>
+                <th style="width: 10rem">Phân loại</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="item"></p-tableCheckbox>
+                </td>
+                <td>{{ item.getFormattedValue('code') }}</td>
+                <td [mathjax]="item.getFormattedValue('name')"></td>
+                <td>{{ item.getFormattedValue('type') }}</td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <button pButton pRipple label="{{ 'common.confirm' | translate }}"
+                icon="pi pi-check" class=""
+                [disabled]="!selected?.length"
+                (click)="confirm()">
+            </button>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="4" class="border-none bg-white">
+                    <div class="text-center font-medium py-4">
+                        <span>{{ 'common.list_empty' | translate }}</span>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>

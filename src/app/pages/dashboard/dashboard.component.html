@@ -1,0 +1,160 @@
+<div class="grid">
+    <div class="col-12">
+        <h3 class="text-primary">Tổng quát</h3>
+    </div>
+    <div class="col-12 xl:col-8">
+        <div class="card card-shadow mb-0">
+            <div class="flex justify-content-between">
+                <h5>Tiến độ học tập</h5>
+
+
+                <div class="flex nav-icons">
+                    <i *ngFor="let item of listStudyProcesses"
+                        [ngClass]="{'nav-item-active': item.id === activeProcessId}"
+                        class="nav-item icomoon icon-primitive-dot icon-2x cursor-pointer"
+                        (click)="changeStudyProcess(item)">
+                    </i>
+                </div>
+            </div>
+
+            <div class="grid mt-2">
+                <div class="col-4">
+                    <div class="w-12rem h-12rem mx-auto">
+                        <circle-progress [percent]="activeProcess?.percent"
+                        [outerStrokeColor]="activeProcess?.percent === 100 ? '#22c55e' : '#00a1e4'"
+                        [outerStrokeGradientStopColor]="activeProcess?.percent === 100 ? '#188a42' : '#0071a0'">
+
+                    </circle-progress>
+                    </div>
+                </div>
+
+                <div class="col grid grid-nogutter">
+                    <div class="col-6 flex pr-3">
+                        <fa-icon [icon]="faChalkboardTeacher"
+                            class="mr-3 text-lg">
+                        </fa-icon>
+                        <div class="text-lg">
+                            <div class="font-bold mb-2">Khóa học</div>
+                            <div>
+                                {{ activeProcess?.className }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 flex pr-3">
+                        <fa-icon [icon]="faBookReader"
+                            class="mr-3 text-lg">
+                        </fa-icon>
+                        <div class="text-lg">
+                            <div class="font-bold mb-2">Giáo viên</div>
+                            <div>
+                                {{ activeProcess?.teacher }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 flex pr-3">
+                        <i class="icomoon icon-book2 mr-3 text-xl"></i>
+                        <div class="text-lg">
+                            <div class="font-bold mb-2">
+                                Số bài tập
+                            </div>
+                            <div>
+                                {{ activeProcess?.exerciseCount }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 flex pr-3">
+                        <fa-icon [icon]="faClock"
+                            class="mr-3 text-lg">
+                        </fa-icon>
+                        <div class="text-lg">
+                            <div class="font-bold mb-2">
+                                Hạn nộp
+                            </div>
+                            <div>
+                                {{ activeProcess?.deadline }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-content-end">
+                <button pButton pRipple
+                    icon="pi pi-angle-left"
+                    class="p-button-outlined p-button-secondary p-button-lg mr-3"
+                    (click)="goToPrevStudyProcess()">
+                </button>
+                <button pButton pRipple
+                    icon="pi pi-angle-right"
+                    class="p-button-outlined p-button-secondary p-button-lg"
+                    (click)="goToNextStudyProcess()">
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 xl:col-4">
+        <div class="card card-shadow mb-0">
+            <h5>Lịch học sắp tới</h5>
+            <div *ngFor="let item of recentStudyTimes"
+                class="flex align-items-center mb-3">
+                <div class="font-medium pr-3 w-4rem">
+                    {{ item.time }}
+                </div>
+                <div class="flex flex-column flex-grow-1 pl-3"
+                    style="border-left: 5px solid var(--primary-color);"
+                    [ngClass]="{'border-red-600': item.isOnline}">
+                    <div class="mb-2">{{ item.type }}</div>
+                    <div class="font-bold">{{ item.subject }}</div>
+                </div>
+
+                <div>{{ item.date }}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card card-shadow mb-0">
+            <h5 class="mb-4">Thông tin điểm danh</h5>
+            <div class="table-beone">
+                <p-table [value]="listAttendance"
+                    styleClass="p-datatable-striped"
+                    [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="header">
+                        <tr class="row-header">
+                            <th>Khóa học</th>
+                            <th *ngFor="let c of attendanceCols"
+                                class="text-center">
+                                {{ c.label }}
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-item>
+                        <tr>
+                            <td>{{ item.subjectName }}</td>
+                            <td *ngFor="let c of attendanceCols"
+                                class="text-center">
+                                <i *ngIf="item.checked[c.id] === true"
+                                    class="pi pi-check text-green-500 font-bold text-lg">
+                                </i>
+                                <i *ngIf="item.checked[c.id] === false"
+                                    class="pi pi-times text-red-500 font-bold text-lg">
+                                </i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="emptymessage">
+                        <tr>
+                            <td [colSpan]="(attendanceCols?.length || 0) + 1"
+                                class="border-none bg-white">
+                                <div class="text-center font-medium py-4">
+                                    <span>Không tìm thấy thông tin</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </div>
+
+
+</div>

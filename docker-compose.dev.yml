@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile_dev
+    command: ng serve --host 0.0.0.0
+    container_name: mojo-lms-web-dev
+    image: mojo-lms-web/dev
+    volumes:
+      - ./src:/home/node/mojo-lms-web/src
+      - ./node_modules:/home/node/mojo-lms-web/node_modules
+    
+    ports:
+      - '7700:7700'
+

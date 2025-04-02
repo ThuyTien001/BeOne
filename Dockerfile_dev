@@ -1,0 +1,21 @@
+# base image
+FROM node:14.20.1
+
+
+# set working directory
+WORKDIR /home/node/mojo-lms-web
+
+# install and cache app dependencies
+COPY package.json .
+COPY package-lock.json .
+COPY tsconfig.json .
+COPY tsconfig.app.json .
+COPY tsconfig.spec.json .
+COPY .eslintrc.json .
+COPY angular.json .
+COPY gulpfile.js .
+
+RUN npm install
+RUN npm install -g @angular/cli@15.0.0
+
+EXPOSE 7700

@@ -1,0 +1,76 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+
+        <div [spinner]="isLoading" class="w-full surface-card card shadow-1 pb-6 pt-6 px-3 sm:px-5">
+            <div class="flex flex-column align-items-center justify-content-center mb-3">
+                <lms-main-logo
+                    logo="logo-mini"
+                    className="w-7rem flex-shrink-0">
+                </lms-main-logo>
+                <h5>
+                    {{ 'auth.sign_up' | translate }}
+                </h5>
+            </div>
+            <div (keydown.enter)="signUp()">
+                <!-- Display Name -->
+                <label for="mobile" class="block text-900 font-medium mb-2">
+                    {{ 'auth.user_display_name' | translate }}
+                </label>
+                <input pInputText id="mobile" type="text"
+                    [(ngModel)]="userDisplayName"
+                    class="w-full md:w-30rem mb-4"
+                    placeholder="{{ 'auth.user_display_name' | translate }}">
+
+                <!-- Phone number -->
+                <label for="mobile" class="block text-900 font-medium mb-2">
+                    {{ 'auth.phone_number' | translate }}
+                </label>
+                <div class="p-inputgroup w-full md:w-30rem mb-4 phone-number-input">
+                    <span class="p-inputgroup-addon">+84</span>
+                    <input pInputText id="mobile" type="number"
+                        [(ngModel)]="_phoneNumber"
+                        placeholder="{{ 'auth.phone_number_placeholder' | translate }}">
+                </div>
+
+                <!-- Verify Code -->
+                <lms-send-code-btn #sendCodeBtn
+                    [phoneNumber]="phoneNumber">
+                </lms-send-code-btn>
+
+
+                <!-- Password -->
+                <label class="block text-900 font-medium mb-2">
+                    {{ 'auth.password' | translate }}
+                </label>
+                <p-password
+                    [(ngModel)]="password"
+                    placeholder="{{ 'auth.password_placeholder' | translate }}"
+                    [feedback]="false"
+                    [toggleMask]="true"
+                    inputStyleClass="w-full md:w-30rem">
+                </p-password>
+
+                <!-- Confirm Password -->
+                <label class="block text-900 font-medium mb-2 mt-4">
+                    {{ 'auth.confirm_password' | translate }}
+                </label>
+                <p-password
+                    [(ngModel)]="passwordConfirm"
+                    placeholder="{{ 'auth.confirm_password_placeholder' | translate }}"
+                    [feedback]="false"
+                    [toggleMask]="true"
+                    inputStyleClass="w-full md:w-30rem">
+                </p-password>
+
+                <div class="mt-6">
+                    <p-messages [(value)]="errMessages" [enableService]="false"></p-messages>
+                    <button pButton pRipple
+                        label="{{ 'auth.sign_up' | translate }}"
+                        class="w-full"
+                        (click)="signUp()">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,195 @@
+<div id="main" class="hero-section relative">
+    <div class="flex flex-column px-4 md:pt-0 md:w-9 lg:w-6 absolute md:relative z-2">
+        <h1 class="text-primary font-bold 
+        text-4xl lg:text-6xl mb-0
+        scalein animation-duration-500">
+            TRUNG TÂM <br>TOÁN CÔNG NGHỆ
+        </h1>
+        <h3 class="scalein animation-duration-500 my-4 lg:w-10">
+            Dành cho học sinh muốn nâng cao tư duy toán theo chương trình phổ thông cơ sở
+        </h3>
+        <button pButton pRipple label="Tìm lớp học"
+            class="p-button-danger w-min white-space-nowrap text-3xl 
+            scalein animation-duration-500 btn-find-class">
+        </button>
+    </div>
+    <img src="assets/images/landing/top-background-2.webp" alt="top-background"
+        class="hidden xl:block xl:w-8 z-1">
+</div>
+
+<!-- Giáo viên tiêu biểu -->
+<div id="teachers" class="teacher-section bg-primary w-screen relative flex flex-column align-items-center 
+    pb-6 xl:pb-8">
+    <h3 class="font-bold text-white mt-8 mb-5 xl:mt-8 text-4xl xl:text-6xl">
+        Giáo viên tiêu biểu
+    </h3>
+    <p class="px-4 lg:px-0 lg:w-8 xl:w-6 text-center text-xl lg:text-2xl">
+        Chúng tôi tự hào giới thiệu đến bạn đội ngũ giáo viên tiêu biểu của chúng tôi, những người đam mê
+        nghề
+        giáo và luôn tận tâm với công việc giảng dạy.
+    </p>
+
+    <div class="h-auto mx-auto w-full xl:w-auto">
+        <p-carousel
+            [value]="listTeachers"
+            [numVisible]="3"
+            [numScroll]="1"
+            [responsiveOptions]="responsiveOptions">
+            <ng-template let-teacher pTemplate="item">
+                <div class="flex flex-column teacher-profile px-4 w-full">
+                    <img src="{{ teacher.url }}"
+                        [alt]="teacher.name"
+                        class="h-auto w-12 md:h-15rem xl:h-25rem md:w-auto"
+                        style="object-fit: contain;" />
+                    <div class="flex-grow-1">
+                        <h3 class="mb-1 text-center text-white mt-3">{{ teacher.name }}</h3>
+                        <p class="mb-1 text-center text-2xl">{{ teacher.position }}</p>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
+    </div>
+</div>
+
+<!-- Đặc điểm nổi bật -->
+<div id="features" class="feature-section w-screen relative flex flex-column align-items-center pb-6 xl:pb-8">
+    <div class="w-full h-full absolute background-symbol-3 opacity-20"></div>
+    <h3 class="font-bold text-primary mt-8 mb-6 xl:mt-8 text-4xl xl:text-6xl">
+        Đặc điểm nổi bật
+    </h3>
+    <div class="flex justify-content-center w-full">
+        <div class="grid md:w-8 h-auto">
+            <div *ngFor="let fItem of listFeatured"
+                class="col-12 md:col-4 flex flex-column">
+                <div class="w-full h-10rem lg:h-20rem border-round-2xl mx-auto bg-contain bg-no-repeat bg-center"
+                    [ngStyle]="{background: 'url(' + fItem.url + ')'}">
+                </div>
+                <p class="text-center text-primary 
+                    font-bold text-3xl 
+                    px-4 mt-3 mb-0">
+                    {{ fItem.title }}
+                </p>
+                <p class="text-center font-medium text-2xl px-4 mt-2">
+                    {{ fItem.content }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Hoạt động nổi bật -->
+<div class="relative flex flex-column w-screen bg-white pb-6">
+    <div class="w-full h-full absolute background-symbol-5 opacity-70"></div>
+    <h3 class="font-bold text-primary text-center mt-8 mb-6 xl:mt-8 text-4xl xl:text-6xl z-2">
+        Hoạt động nổi bật
+    </h3>
+    <div class="grid">
+        <div *ngIf="!isLoadingPost && listPost.length" class="col-12 md:col-10 md:col-offset-1 relative">
+            <div class="grid">
+                <div class="hidden md:block col-6 post-item">
+                    <a [routerLink]="'/public/post/' + firstPost.id">
+                        <div class="card bg-white p-0 border-round-2xl cursor-pointer "
+                            style="height: calc(100% - 1rem);">
+                            <img src="{{ firstPost.thumbnail }}" [alt]="firstPost.title"
+                                class="w-8 md:w-full h-auto md:max-h-15rem xl:max-h-27rem
+                                border-round-2xl border-noround-bottom mx-auto" />
+                            <div class="relative">
+                                <div [class]="'post-tag ' + firstPost.tag">
+                                    {{ firstPost.tagLabel }}
+                                </div>
+                                <h4 class="text-primary font-bold text-lg 
+                                    md:px-4 mt-3 mb-0">
+                                    {{ firstPost.title }}
+                                </h4>
+                                <p class="text-lg text-color-secondary
+                                    md:px-4 mb-3 mt-0">
+                                    {{ firstPost.publishDate }}
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-12 md:col-6">
+                    <div class="grid">
+                        <div *ngFor="let post of listPost; let i = index"
+                            class="col-12 md:col-6 lg:col-6 post-item cursor-pointer"
+                            [ngClass]="{
+                                    'block md:hidden': i === 0,
+                                    'hidden md:block': i > 2
+                                }">
+                            <a
+                                [routerLink]="'/public/post/' + post.id">
+                                <div class="card bg-white p-0 border-round-2xl w-11 mx-auto">
+                                    <img src="{{ post.thumbnail }}" [alt]="post.title"
+                                        class="w-full 
+                                        max-h-10rem
+                                        md:h-auto md:max-h-5rem xl:max-h-10rem
+                                        border-round-2xl border-noround-bottom mx-auto" />
+                                    <div class="relative">
+                                        <div [class]="'post-tag ' + post.tag">
+                                            {{ post.tagLabel }}
+                                        </div>
+                                        <h4 class="text-lg px-4 mt-3 mb-0">
+                                            <span class="font-bold text-primary">{{ post.title }}</span>
+                                        </h4>
+                                        <p class="text-lg px-4 mb-3 text-color-secondary">{{ post.publishDate }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isLoadingPost" class="col-12 md:col-10 md:col-offset-1 relative">
+            <div class="grid">
+                <div class="hidden md:block col-6 post-item">
+                    <div class="card bg-white p-0 border-round-2xl cursor-pointer"
+                        style="height: calc(100% - 1rem);">
+                        <p-skeleton height="30rem"
+                            styleClass="border-noround-bottom max-h-10rem md:max-h-12rem xl:max-h-20rem">
+                        </p-skeleton>
+                        <p-skeleton width="70%" height="2rem"
+                            styleClass="my-3 ml-3">
+                        </p-skeleton>
+                        <p-skeleton width="40%" height="1.25rem"
+                            styleClass="mb-3 ml-3">
+                        </p-skeleton>
+                    </div>
+                </div>
+                <div class="col-12 md:col-6">
+                    <div class="grid">
+                        <div *ngFor="let post of [1,2,3,4,5];let i = index"
+                            class="col-12 md:col-6 lg:col-6 post-item cursor-pointer"
+                            [ngClass]="{
+                                'block md:hidden': i === 0,
+                                'hidden md:block': i > 2
+                            }">
+                            <div class="card bg-white p-0 border-round-2xl w-11 mx-auto">
+                                <p-skeleton height="30rem"
+                                    styleClass="border-noround-bottom max-h-10rem md:max-h-5rem xl:max-h-10rem">
+                                </p-skeleton>
+                                <p-skeleton width="70%" height="2rem"
+                                    styleClass="my-3 ml-3">
+                                </p-skeleton>
+                                <p-skeleton width="40%" height="1.25rem"
+                                    styleClass="mb-3 ml-3">
+                                </p-skeleton>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div *ngIf="!isLoadingPost" class="col-12 md:col-6 md:col-offset-3 p-0">
+            <div class="flex justify-content-center">
+                <button pButton pRipple label="XEM THÊM"
+                    class="p-button-primary">
+                </button>
+            </div>
+        </div> -->
+    </div>
+</div>

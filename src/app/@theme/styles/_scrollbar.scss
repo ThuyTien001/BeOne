@@ -1,0 +1,23 @@
+$scrollbar-width: 0.5rem;
+$scrollbar-bg-color: var(--surface-hover);
+$scrollbar-color: var(--surface-border);
+
+::-webkit-scrollbar {
+    width: $scrollbar-width;
+    height: $scrollbar-width;
+}
+
+::-webkit-scrollbar-corner {
+    background: $scrollbar-bg-color;
+}
+
+::-webkit-scrollbar-thumb {
+    background: $scrollbar-color;
+    cursor: pointer;
+    border-radius: calc($scrollbar-width) * .5;
+    opacity: 0.5;
+}
+
+::-webkit-scrollbar-track {
+    background: $scrollbar-bg-color;
+}

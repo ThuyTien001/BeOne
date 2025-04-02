@@ -1,0 +1,76 @@
+<div class="surface-section overflow-x-hidden pt-6">
+    <ng-container *ngIf="isLoading.value">
+        <div class="w-full flex justify-content-center">
+            <div class="grid w-10 md:w-8 xl:w-8 px-4 pb-4">
+                <div class="w-full border-bottom-1 surface-border pt-4 pb-3 mb-5">
+                    <p-skeleton height="3rem" styleClass="mb-3 w-10"></p-skeleton>
+                    <div class="flex align-items-center">
+                        <p-skeleton height="1.5rem" width="9rem"></p-skeleton>
+                    </div>
+                </div>
+                <div class="w-full">
+                    <p-skeleton height="8rem" styleClass="mb-5"></p-skeleton>
+                    <p-skeleton height="2rem" styleClass="mb-5 w-10"></p-skeleton>
+                    <p-skeleton height="12rem" styleClass="mb-5 w-8"></p-skeleton>
+                    <p-skeleton height="6rem" styleClass="mb-5"></p-skeleton>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!isLoading.value">
+        <div class="w-full flex justify-content-center">
+            <div class="grid w-10 md:w-8 xl:w-8 px-4 pb-4">
+                <div class="w-full border-bottom-1 surface-border pt-4 pb-3 mb-5">
+                    <h1 id="title" class="text-5xl font-bold text-primary">
+                        {{ title }}
+                    </h1>
+                    <div class="flex align-items-center">
+                        <div [class]="'post-tag ' + tag.cssClass">
+                            {{ tag.label }}
+                        </div>
+                        <div class="ml-4 text-600">{{ publishDate }}</div>
+                    </div>
+                </div>
+                <div style="zoom: 1.1" [innerHTML]="contentHTML"></div>
+            </div>
+        </div>
+        <div>
+            <div class="other-post-section 
+                w-screen relative 
+                flex flex-column align-items-center
+                pb-6 xl:pb-7">
+                <h3 class="font-bold text-primary mt-6 mb-5 xl:mt-8 text-4xl xl:text-6xl">
+                    Tin tức khác
+                </h3>
+
+                <div class="mx-auto w-full md:w-9 px-4">
+                    <p-carousel
+                        [value]="listOtherPosts"
+                        [numVisible]="3"
+                        [numScroll]="3"
+                        [responsiveOptions]="responsiveOptions">
+                        <ng-template let-post pTemplate="item">
+                            <div class="flex flex-column px-4 py-2 w-full">
+                                <a [routerLink]="'/public/post/' + post.id">
+                                    <div class="flex flex-column bg-white shadow-1 border-round">
+                                        <img src="{{ post.thumbnail }}"
+                                            [alt]="post.title"
+                                            class="h-15rem w-full border-round-top"
+                                            style="object-fit: cover;" />
+                                        <div class="flex-grow-1">
+                                            <h4 class="text-center text-primary my-3 xl:my-4">{{ post.title }}</h4>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </ng-template>
+                    </p-carousel>
+                </div>
+            </div>
+
+        </div>
+    </ng-container>
+
+
+</div>

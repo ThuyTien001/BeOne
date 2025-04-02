@@ -1,0 +1,74 @@
+<div
+    class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden login-container">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <div [spinner]="isLoading"
+            class="card w-full surface-card shadow-1 pb-6 pt-6 px-3 sm:px-5">
+            <div class="flex flex-column align-items-center justify-content-center mb-3">
+                <lms-main-logo
+                    logo="logo-mini"
+                    className="w-7rem flex-shrink-0">
+                </lms-main-logo>
+                <h5>
+                    {{ 'auth.login' | translate }}
+                </h5>
+            </div>
+
+            <div (keydown.enter)="login()">
+                <!-- Phone number -->
+                <label for="mobile" class="block text-900 font-medium mb-2">
+                    {{ 'auth.phone_number' | translate }}
+                </label>
+                <div class="p-inputgroup w-full md:w-30rem mb-4 phone-number-input">
+                    <span class="p-inputgroup-addon">+84</span>
+                    <input pInputText id="mobile" type="number"
+                        [(ngModel)]="_phoneNumber"
+                        placeholder="{{ 'auth.phone_number_placeholder' | translate }}">
+                </div>
+
+
+                <div [hidden]="loginType !== 'pwd'" class="mb-4">
+                    <label for="password1" class="block text-900 font-medium mb-2">
+                        {{ 'auth.password' | translate }}
+                    </label>
+                    <p-password id="password1"
+                        [(ngModel)]="password"
+                        placeholder="{{ 'auth.password_placeholder' | translate }}"
+                        [feedback]="false"
+                        [toggleMask]="true"
+                        inputStyleClass="w-full p-3 md:w-30rem">
+                    </p-password>
+                </div>
+                <div [hidden]="loginType !== 'code'">
+                    <lms-send-code-btn #sendCodeBtn
+                        [phoneNumber]="phoneNumber">
+                    </lms-send-code-btn>
+                </div>
+
+                <a class="font-medium no-underline text-blue-700 cursor-pointer"
+                    (click)="changeLoginType()">
+                    <span *ngIf="loginType === 'code'">{{ 'auth.login_by_password' | translate }}</span>
+                    <span *ngIf="loginType === 'pwd'">{{ 'auth.login_by_code' | translate }}</span>
+                </a>
+
+                <div [ngClass]="{'mt-3': errMessages?.length, 'mt-5': !errMessages?.length}">
+                    <p-messages [(value)]="errMessages" [enableService]="false"></p-messages>
+                    <button pButton pRipple
+                        label="{{ 'auth.login' | translate }}"
+                        class="w-full"
+                        (click)="login()">
+                    </button>
+                </div>
+
+                <div class="mt-5 text-center">
+                    <span class="text-600 font-medium line-height-3">
+                        {{ 'auth.create_account_content' | translate }}
+                    </span>
+                    <a class="font-medium no-underline ml-1 text-blue-700 cursor-pointer"
+                        (click)="router.navigate(['/auth/sign-up'])">
+                        {{ 'auth.create_account_link' | translate }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

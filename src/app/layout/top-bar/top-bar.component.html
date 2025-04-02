@@ -1,0 +1,226 @@
+<div class="layout-topbar">
+    <div class="layout-topbar-left">
+        <div #menuButton class="sidebar-toggle">
+            <div id="sidebar-toggle-icon" [ngClass]="{'open': isShowMenu}"
+                (click)="layoutService.onMenuToggle()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <a class="layout-topbar-logo" routerLink="/">
+            <lms-main-logo [height]="'3.5rem'" class="mr-3 mt-1"></lms-main-logo>
+        </a>
+    </div>
+
+    <div class="layout-topbar-center flex-grow-1 hidden lg:block">
+        <!-- <span class="p-input-icon-left w-full">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" placeholder="Tìm kiếm nội dung..." class="w-5" />
+        </span> -->
+    </div>
+
+    <div class="layout-topbar-right flex">
+
+        <div #notificationBtn pRipple class="btn-notify" (click)="layoutService.showNotifications()">
+            <i class="pi pi-bell mr-4 p-text-secondary"
+                style="font-size: 1.75rem"
+                pBadge value="2" severity="warning">
+            </i>
+        </div>
+        <div #notificationView class="layout-topbar-notifications card max-w-30rem"
+            [ngClass]="{'layout-topbar-notifications-active': layoutService.state.notificationsVisible}">
+            <div class="flex align-items-center justify-content-between mb-3">
+                <div class="text-900 font-medium text-xl">
+                    Thông báo
+                </div>
+                <div>
+                    <button type="button" pButton label="Xem thêm"
+                        class="p-button-text p-button-info p-button-sm">
+                    </button>
+                </div>
+            </div>
+            <ul class="p-0 mx-0 mt-0 mb-4 list-none">
+                <li class="flex align-items-top py-3 border-bottom-1 surface-border">
+                    <div
+                        class="w-3rem h-3rem flex align-items-center justify-content-center bg-blue-100 border-circle mr-3 flex-shrink-0">
+                        <i class="pi pi-dollar text-xl text-blue-500"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="flex justify-content-between mb-2">
+                            <div class="font-bold">Thầy Nguyễn Văn A</div>
+                            <div class="text-400 float-right font-size-sm">04:58</div>
+                        </div>
+
+                        <span>
+                            Đáp án cho câu hỏi của em...
+                        </span>
+                    </div>
+                </li>
+                <li class="flex align-items-top py-3 border-bottom-1 surface-border">
+                    <div
+                        class="w-3rem h-3rem flex align-items-center justify-content-center bg-white border-circle mr-3 flex-shrink-0">
+                        <img src="../../../assets/images/logo/logo-beone-mini.svg" class="w-3rem h-3rem">
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="flex justify-content-between mb-2">
+                            <div class="font-bold">Trung tâm BeOne</div>
+                            <div class="text-400 float-right font-size-sm">12:16</div>
+                        </div>
+
+                        <span>
+                            Khóa học <span class="font-semibold">Toán Đại Cương 6</span> của bạn vừa được cập nhật thêm
+                            bài <span class="font-semibold">Làm tròn và ước lượng</span>.
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <button #topBarMenuButton class="p-link layout-topbar-menu-button-mini layout-topbar-button"
+            (click)="layoutService.showProfileSidebar()">
+            <i class="pi pi-ellipsis-v"></i>
+        </button>
+
+        <div #topBarMenuButtonFull class="layout-topbar-menu-button layout-topbar-button" pRipple
+            (click)="layoutService.showProfileSidebar()">
+            <lms-avatar></lms-avatar>
+            <span class="pl-3 select-none">{{ userDisplayName }}</span>
+        </div>
+
+        <div #topBarMenu class="layout-topbar-menu card"
+            [ngClass]="{'layout-topbar-menu-active': layoutService.state.profileSidebarVisible}">
+            <!-- <button class="p-link layout-topbar-button p-3" (click)="goToProfilePage()">
+                <i class="icomoon icon-user-plus text-2xl"></i>
+                <span class="topbar-profile-text pl-1">{{ 'core.user_menu.profile' | translate }}</span>
+            </button>
+            <p-divider></p-divider> -->
+            <button class="p-link layout-topbar-button p-3" (click)="openChangePasswordDialog()">
+                <i class="icomoon icon-cog5 text-2xl"></i>
+                <span class="topbar-profile-text pl-1">{{ 'core.user_menu.change_pwd' | translate }}</span>
+            </button>
+            <!-- <button class="p-link layout-topbar-button" (click)="onConfigButtonClick()">
+            <i class="pi pi-cog"></i>
+            <span class="topbar-profile-text pl-1">Settings</span>
+        </button> -->
+            <button class="p-link layout-topbar-button logout-btn" (click)="logout()">
+                <!-- <i class="pi pi-sign-out"></i> -->
+                <i class="icomoon icon-switch2 text-2xl"></i>
+                <span class="topbar-profile-text pl-1">{{ 'core.user_menu.logout' | translate }}</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<p-dialog header="{{ 'profile.change_pwd.title' | translate }}"
+    [(visible)]="isShowChangePwdDialog"
+    [modal]="true"
+    [draggable]="true"
+    [resizable]="false">
+    <div [spinner]="{show: isLoadingDialog, selector: '.p-dialog'}"></div>
+
+    <div>
+        <!-- Old Password -->
+        <label class="block text-900 font-medium mb-2">
+            {{ 'profile.change_pwd.current_pwd' | translate }}
+        </label>
+        <p-password
+            placeholder="{{ 'profile.change_pwd.current_pwd_placeholder' | translate }}"
+            [feedback]="false"
+            [toggleMask]="true"
+            [(ngModel)]="changPwdData.current"
+            inputStyleClass="w-full md:w-30rem">
+        </p-password>
+
+        <!-- New Password -->
+        <label class="block text-900 font-medium mb-2 mt-4">
+            {{ 'profile.change_pwd.new_pwd' | translate }}
+        </label>
+        <p-password
+            placeholder="{{ 'profile.change_pwd.new_pwd_placeholder' | translate }}"
+            [feedback]="false"
+            [toggleMask]="true"
+            [(ngModel)]="changPwdData.new"
+            inputStyleClass="w-full md:w-30rem">
+        </p-password>
+
+        <!-- Confirm Password -->
+        <label class="block text-900 font-medium mb-2 mt-4">
+            {{ 'auth.confirm_password' | translate }}
+        </label>
+        <p-password
+            placeholder="{{ 'auth.confirm_password_placeholder' | translate }}"
+            [feedback]="false"
+            [toggleMask]="true"
+            [(ngModel)]="changPwdData.confirm"
+            inputStyleClass="w-full md:w-30rem">
+        </p-password>
+
+        <p-messages [(value)]="changPwdData.errMessages" [enableService]="false"></p-messages>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <p-button label="{{ 'common.close'| translate }}"
+            styleClass="p-button-secondary"
+            (onClick)="isShowChangePwdDialog = false">
+        </p-button>
+        <p-button label="{{ 'common.confirm'| translate }}"
+            (onClick)="changePassword()">
+        </p-button>
+    </ng-template>
+</p-dialog>
+
+
+
+<!-- <p-sidebar [(visible)]="visible" position="right" [transitionOptions]="'.3s cubic-bezier(0, 0, 0.2, 1)'"
+    styleClass="layout-config-sidebar w-20rem">
+    <h5>Scale</h5>
+    <div class="flex align-items-center">
+        <button icon="pi pi-minus" type="button" pButton (click)="decrementScale()"
+            class="p-button-text p-button-rounded w-2rem h-2rem mr-2" [disabled]="scale === scales[0]"></button>
+        <div class="flex gap-2 align-items-center">
+            <i class="pi pi-circle-fill text-300" *ngFor="let s of scales"
+                [ngClass]="{'text-primary-500': s === scale}"></i>
+        </div>
+        <button icon="pi pi-plus" type="button" pButton (click)="incrementScale()"
+            class="p-button-text p-button-rounded w-2rem h-2rem ml-2"
+            [disabled]="scale === scales[scales.length - 1]">
+        </button>
+    </div>
+
+
+    <h5>Light Theme</h5>
+    <div class="grid">
+        <div class="col-3" *ngFor="let item of [
+            { theme: 'lara-light-indigo', alt: 'Lara Light Indigo' },
+            { theme: 'lara-light-blue', alt: 'Lara Light Blue' },
+            { theme: 'lara-light-purple', alt: 'Lara Light Purple' },
+            { theme: 'lara-light-teal', alt: 'Lara Light Teal' },
+        ]">
+            <button class="p-link w-2rem h-2rem" (click)="changeTheme(item.theme, 'light')">
+                <img class="w-2rem h-2rem"
+                    src="assets/themes/{{item.theme}}/logo.png"
+                    alt="{{item.alt}}">
+            </button>
+        </div>
+    </div>
+
+    <h5>Dark Theme</h5>
+    <div class="grid">
+        <div class="col-3" *ngFor="let item of [
+            { theme: 'lara-dark-indigo', alt: 'Lara Dark Indigo' },
+            { theme: 'lara-dark-blue', alt: 'Lara Dark Blue' },
+            { theme: 'lara-dark-purple', alt: 'Lara Dark Purple' },
+            { theme: 'lara-dark-teal', alt: 'Lara Dark Teal' },
+        ]">
+            <button class="p-link w-2rem h-2rem" (click)="changeTheme(item.theme, 'dark')">
+                <img class="w-2rem h-2rem"
+                    src="assets/themes/{{item.theme}}/logo.png"
+                    alt="{{item.alt}}">
+            </button>
+        </div>
+    </div>
+
+</p-sidebar> -->

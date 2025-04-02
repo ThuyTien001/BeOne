@@ -1,0 +1,73 @@
+<div>
+    <!-- Question -->
+    <div class="mb-3">
+        <p class="font-medium white-space-break-spaces mb-2">
+            <span>{{ questionPrefix }}</span>
+            <span [mathjax]="questionLabel | lmsMathjaxFormat"></span>
+        </p>
+        <p *ngIf="questionContent" class="mb-2"
+            [mathjax]="questionContent | lmsMathjaxFormat">
+        </p>
+    </div>
+
+    <ng-container *ngIf="!hideInput">
+        <!-- Checkbox -->
+        <div *ngIf="questionType === 'single' || questionType === 'multiple'" class="grid grid-nogutter">
+            <div *ngFor="let answer of _listAnswers"
+                class="col-12 lg:col-6 mb-1">
+                <div class="field-checkbox">
+                    <p-checkbox name="{{ uid }}"
+                        [disabled]="disabled || showResult"
+                        [value]="answer.id"
+                        [inputId]="answer.uid"
+                        [(ngModel)]="_valueCheckboxes"
+                        (ngModelChange)="onCheckboxChange()">
+                    </p-checkbox>
+                    <label [for]="answer.uid" class="hover:border-1 cursor-pointer white-space-break-spaces"
+                        [ngClass]="{'bg-green-600 text-white p-2 border-round': trueAnswerId === answer.id && showResult}">
+                        <span>{{ answer.prefix }}</span>
+                        <span [mathjax]="answer.label | lmsMathjaxFormat"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <!-- Text -->
+        <textarea *ngIf="questionType === 'text'"
+            pInputTextarea rows="3"
+            placeholder="{{ LABELS.input_answer_placeholder }}"
+            [disabled]="disabled"
+            [autoResize]="true"
+            [(ngModel)]="_valueText"
+            (ngModelChange)="onTextChange()"
+            class="w-full">
+        </textarea>
+        <!-- Number -->
+        <p-inputNumber *ngIf="questionType === 'number'"
+            placeholder="{{ LABELS.input_answer_placeholder }}"
+            mode="decimal"
+            [disabled]="disabled"
+            [minFractionDigits]="2"
+            [(ngModel)]="_valueNumber"
+            (ngModelChange)="onNumberChange()"
+            class="w-full">
+        </p-inputNumber>
+    </ng-container>
+    <ng-container *ngIf="hideInput">
+        <div *ngIf="questionType === 'single' || questionType === 'multiple'" class="grid grid-nogutter">
+            <div *ngFor="let answer of _listAnswers"
+                class="col-12 lg:col-12 mb-1"
+                [ngClass]="{'bg-green-600 text-white p-2 border-round': trueAnswerId === answer.id && showResult}">
+                <span>{{answer.prefix}}</span>
+                <span [mathjax]="answer.label | lmsMathjaxFormat"></span>
+            </div>
+        </div>
+        <div *ngIf="questionType === 'text'"></div>
+        <div *ngIf="questionType === 'number'"></div>
+    </ng-container>
+
+
+    <p *ngIf="questionExplain && showExplain" class="mb-3">
+        <span class="font-bold">Lời giải: </span>
+        <span [mathjax]="questionExplain | lmsMathjaxFormat"></span>
+    </p>
+</div>

@@ -1,0 +1,123 @@
+<div class="page-card card flex flex-column p-0"
+    [spinner]="isLoading.value">
+    <div class="flex justify-content-between align-items-center px-5 py-4
+        border-bottom-1 surface-border">
+        <h5 class="mb-0">
+            Bài tập {{ record?.get('code') }}
+        </h5>
+        <div>
+            <button pButton pRipple label="Xem trước"
+                icon="pi pi-eye" class="p-button-info mr-3"
+                (click)="showDialogPreview()">
+            </button>
+            <button pButton pRipple label="{{ 'common.save' | translate }}"
+                icon="pi pi-save" class="mr-3"
+                (click)="saveExercise()">
+            </button>
+            <button pButton pRipple label="{{ 'common.close' | translate }}"
+                class="p-button-secondary p-button-outlined"
+                (click)="onClickCloseBtn()">
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <p-tabView [(activeIndex)]="tabIndex">
+            <p-tabPanel header="Thông tin chung">
+                <div style="height: calc(100vh - 24.4rem)">
+                    <div class="flex flex-column gap-2 mb-3">
+                        <label htmlFor="questionName" class="font-semibold required">
+                            Tiêu đề
+                        </label>
+                        <input pInputText id="questionName" [(ngModel)]="formData.name"
+                            [ngClass]="{'ng-invalid ng-dirty': formData.nameInvalid}" />
+                    </div>
+
+                    <div class="flex flex-column gap-2 mb-3">
+                        <label htmlFor="questionContent" class="font-semibold">
+                            Mô tả
+                        </label>
+
+                        <textarea rows="2" pInputTextarea id="questionContent"
+                            [(ngModel)]="formData.description">
+                        </textarea>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Câu hỏi">
+                <div style="height: calc(100vh - 24.4rem)">
+                    <p-table
+                        scrollHeight="flex"
+                        [scrollable]="true"
+                        [value]="listSelectedQuestions"
+
+                        selectionMode="single"
+                        dataKey="id">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th style="width: 3rem"></th>
+                                <th style="width: 10rem">Mã</th>
+                                <th>Tiêu đề</th>
+                                <th>Phân loại</th>
+                                <th style="width: 5rem"></th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-item let-index="rowIndex">
+                            <tr [pReorderableRow]="index">
+                                <td>
+                                    <span class="pi pi-bars" pReorderableRowHandle></span>
+                                </td>
+                                <td>{{ item.getFormattedValue('code') }}</td>
+                                <td>{{ item.getFormattedValue('name') }}</td>
+                                <td>{{ item.getFormattedValue('type') }}</td>
+                                <td>
+                                    <p-button type="button" icon="pi pi-trash"
+                                        styleClass="p-button-sm p-button-danger"
+                                        (onClick)="removeQuestion(index)">
+                                    </p-button>
+                                </td>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="summary">
+                            <div class="flex justify-content-between align-items-center">
+                                <p-button type="button" icon="pi pi-plus" class="p-button-sm"
+                                    label="{{ 'excerise.add_question' | translate }}"
+                                    (onClick)="openSelectQuestionDialog()">
+                                </p-button>
+                                <div class="">
+                                    <span class="font-medium">Số lượng cậu hỏi: </span>
+                                    <span>{{ listSelectedQuestions?.length || 0 }}</span>
+                                </div>
+                            </div>
+
+                        </ng-template>
+                        <ng-template pTemplate="emptymessage">
+                            <tr>
+                                <td colspan="4" class="border-none bg-white">
+                                    <div class="text-center font-medium py-4">
+                                        <span>{{ 'common.list_empty' | translate }}</span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
+
+<lms-select-question #selectQuestion
+    (onSubmit)="addQuestion($event)">
+</lms-select-question>
+
+
+<p-dialog header="Xem trước bài tập"
+    [(visible)]="isShowDialogPreview"
+    [modal]="true" [style]="{ width: '50vw' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div class="pt-2">
+        <lms-exercise-view #exerciseView [showResult]="true"></lms-exercise-view>
+    </div>
+</p-dialog>

@@ -1,0 +1,19 @@
+<div class="layout-wrapper" [ngClass]="containerClass">
+    <lms-topbar></lms-topbar>
+    <div class="layout-sidebar">
+        <lms-sidebar></lms-sidebar>
+    </div>
+    <div class="layout-main-container">
+        <p-breadcrumb *ngIf="showBreadcrumb"
+            class="max-w-full"
+            [model]="breadcrumbs"
+            [home]="breadcrumbHome">
+        </p-breadcrumb>
+        <div class="layout-main">
+            <router-outlet></router-outlet>
+            <p-scrollTop target="parent" [threshold]="100" icon="pi pi-arrow-up"></p-scrollTop>
+        </div>
+        <lms-footer></lms-footer>
+    </div>
+    <div class="layout-mask"></div>
+</div>

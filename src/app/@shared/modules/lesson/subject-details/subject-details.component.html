@@ -1,0 +1,59 @@
+<div class="page-card card flex-column p-0"
+    [spinner]="isLoading.value"
+    [ngClass]="{'hidden': showType !== 'subject', 'flex': showType === 'subject'}">
+    <div class="flex justify-content-between align-items-center pb-4 border-bottom-1 surface-border mt-5 mx-5">
+        <h5 class="mb-0">
+            {{ subject?.getFormattedValue('name') }}
+        </h5>
+        <div>
+            <button pButton pRipple
+                label="{{ 'common.back' | translate }}"
+                class="p-button-secondary p-button-outlined"
+                (click)="onClickCloseBtn()">
+            </button>
+        </div>
+    </div>
+    <div class="overflow-auto flex-grow-1 px-5 pt-4">
+        <p-accordion [multiple]="true" (onOpen)="nodeExpand($event)" [activeIndex]="activeIndex">
+            <p-accordionTab *ngFor="let item of treeData" class="p-0">
+                <ng-template pTemplate="header">
+                    <div class="flex align-items-center w-full">
+                        <div class="vertical-align-middle flex-grow-1 text-xl">
+                            {{ item.label }}
+                        </div>
+                        <div class="mr-4">
+                            <i class="pi pi-plus text-xl"></i>
+                            <i class="pi pi-minus text-xl"></i>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="content">
+                    <div class="py-4 text-center" [ngClass]="{'hidden': !item.loading.value}">
+                        <i class="pi-spin icomoon icon-spinner2 text-4xl"></i>
+                    </div>
+                    <ng-container *ngIf="item.childrenLoaded && !item.loading.value">
+                        <div *ngFor="let child of item.children || []"
+                            class="chapter-item p-4 cursor-pointer"
+                            (click)="loadLesson(item, child)">
+                            <img src="../../../../../assets/images/lesson/math.png" alt="" srcset="">
+                            <div class="text-xl flex-grow-1">
+                                {{ child.label }}
+                            </div>
+                            <div class="mr-4">
+                                <i class="icomoon icon-circle-right2 text-3xl"></i>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div *ngIf="item.childrenLoaded && !item.children.length && !item.loading.value"
+                        class="text-center pb-4">
+                        Chưa có bài học
+                    </div>
+                </ng-template>
+            </p-accordionTab>
+        </p-accordion>
+    </div>
+</div>
+
+<div [ngClass]="{'hidden': showType !== 'lesson'}">
+    <lms-lesson-details #lessonDetails (onClose)="closeLesson()"></lms-lesson-details>
+</div>

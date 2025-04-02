@@ -1,0 +1,86 @@
+{
+	"common": {
+		"add": "Thêm",
+		"all": "Tất cả",
+		"back": "Quay lại",
+		"cancel": "Hủy",
+		"close": "Đóng",
+		"confirm": "Xác nhận",
+		"create": "Tạo mới",
+		"date": {
+			"day": "Ngày",
+			"month": "Tháng",
+			"year": "Năm"
+		},
+		"delete": "Xóa",
+		"details": "Chi tiết",
+		"edit": "Chỉnh sửa",
+		"error": "Lỗi",
+		"list_empty": "Danh sách rỗng",
+		"placeholder_none": "(Không có)",
+		"save": "Lưu lại",
+		"search": "Tìm kiếm",
+		"update": "Cập nhật"
+	},
+	"core": {
+		"misc": {
+			"access_denied": {
+				"content": "Bạn không được cấp quyền truy cập tính năng này. Vui lòng liên hệ với quản trị viên.",
+				"title": "Truy cập bị từ chối"
+			},
+			"error": {
+				"content": "Đã xảy ra lỗi. Vui lòng thử lại sau.",
+				"title": "Lỗi"
+			},
+			"go_to_home": "Quay về trang chủ",
+			"not_found": {
+				"content": "Trang bạn tìm kiếm không tồn tại",
+				"title": "Không tìm thấy trang"
+			}
+		},
+		"toast": {
+			"title_default": "Thông báo",
+			"title_error": "Lỗi",
+			"title_success": "Thành công",
+			"title_warning": "Cảnh báo"
+		},
+		"user_menu": {
+			"change_pwd": "Đổi mật khẩu",
+			"logout": "Đăng xuất",
+			"profile": "Lý lịch học sinh"
+		}
+	},
+	"profile": {
+		"change_pwd": {
+			"alert": {
+				"error": "Đổi mật khẩu thất bại",
+				"missing_password": "Vui lòng nhập mật khẩu hiện tại",
+				"pwd_not_match": "Mật khẩu không hợp lệ hoặc không khớp",
+				"success": "Đổi mật khẩu thành công"
+			},
+			"current_pwd": "Mật khẩu hiện tại",
+			"current_pwd_placeholder": "Nhập mật khẩu hiện tại",
+			"new_pwd": "Mật khẩu mới",
+			"new_pwd_placeholder": "Nhập mật khẩu mới",
+			"title": "Đổi mật khẩu"
+		},
+		"update_avatar": {
+			"alert": {
+				"error": "Cập nhật ảnh đại diện thất bại",
+				"success": "Cập nhật ảnh đại diện thành công"
+			},
+			"title": "Cập nhật ảnh đại diện"
+		},
+		"update_profile": {
+			"alert": {
+				"error": "Cập nhật hồ sơ thất bại",
+				"invalid_email": "Email không hợp lệ",
+				"missing_name": "Vui lòng nhập họ và tên",
+				"success": "Cập nhật hồ sơ thành công"
+			},
+			"email": "Email",
+			"full_name": "Họ và tên",
+			"title": "Cập nhật hồ sơ"
+		}
+	}
+}

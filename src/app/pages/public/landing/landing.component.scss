@@ -1,0 +1,107 @@
+.background-symbol-3 {
+    background: url('/assets/images/landing/background-symbol-3.svg');
+    opacity: 0.5;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.background-symbol-5 {
+    background: url('/assets/images/landing/background-symbol-5.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.hero-section {
+    height: calc(100vh - 5.6rem);
+    background-color: white;
+    padding-top: 30%;
+
+    img {
+        position: absolute;
+        bottom: 0;
+        right: 5%;
+        z-index: 0;
+    }
+
+    .btn-find-class {
+        padding: 1rem 3rem;
+        background-color: #eb203e;
+    }
+
+
+
+    background: url('/assets/images/landing/background-symbol-5.jpg');
+    background-position: center top;
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding-top: 10%;
+    padding-left: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .btn-find-class {
+        padding: 1rem 3rem;
+        background-color: #eb203e;
+    }
+
+    @media screen and (min-width: 992px) {
+        height: calc(100vh - 7.3rem);
+    }
+
+    @media screen and (min-width: 1200px) {
+        background: none;
+    }
+}
+
+.teacher-section {
+    background: url('/assets/images/landing/bg-teacher-section.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    ::ng-deep p-carousel {
+
+        .p-carousel-prev,
+        .p-carousel-next,
+        .p-carousel-indicators {
+            display: none;
+        }
+    }
+
+}
+
+.post-item {
+    transition-duration: 300ms;
+    transition-property: filter;
+
+    .post-tag {
+        position: absolute;
+        top: -2.1rem;
+        left: 0;
+    }
+
+    &:hover {
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+    }
+
+    img {
+        object-fit: cover;
+        object-position: center;
+    }
+
+    p {
+        padding-left: 20%;
+        padding-right: 20%;
+
+        @media screen and (min-width: 768px) {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+}

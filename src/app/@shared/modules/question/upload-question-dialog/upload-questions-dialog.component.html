@@ -1,0 +1,66 @@
+<p-dialog header="Tải lên danh sách câu hỏi"
+    [(visible)]="isShowModalUpload"
+    [modal]="true" [style]="{ width: '80vw', height: '90%' }"
+    [draggable]="false"
+    [resizable]="false">
+    <div [spinner]="{show: isLoadingDialog.value, selector: '.p-dialog'}"></div>
+    <div class="border-top-1 surface-border pt-4">
+        <p-fileUpload #upload
+            name="uploadLatex"
+            [customUpload]="true"
+            (uploadHandler)="uploadHandler($event)"
+            (onClear)="onClearFile()"
+            [cancelStyleClass]="'p-button-danger'"
+            [uploadStyleClass]="'p-button-info'"
+            [uploadLabel]="'Tiếp tục'"
+            [previewWidth]="0"
+            [maxFileSize]="1000000">
+            <ng-template let-file pTemplate="file">
+                <div>{{ file.name }} - {{ file.size | lmsFileSize }}</div>
+            </ng-template>
+        </p-fileUpload>
+
+        <div *ngIf="listQuestions.length" class="mt-4">
+            <div *ngFor="let q of listQuestions; let i = index">
+                <div class="flex justify-content-between p-3" [ngClass]="{'surface-ground': i % 2}">
+                    <div class="flex-grow-1 pr-4">
+                        <lms-question-view
+                            [questionLabel]="q.name"
+                            [questionType]="q.type"
+                            [questionExplain]="q.explain"
+                            [questionContent]="q.content"
+                            [listAnswers]="q.answers"
+                            [questionPrefix]="i + 1 + '. '"
+                            [hideInput]="true"
+                            [showExplain]="true"
+                            [showResult]="true"
+                            class="mb-3">
+                        </lms-question-view>
+                    </div>
+                    <div class="flex flex-column">
+                        <p-button icon="pi pi-pencil"
+                            styleClass="p-button-outlined mb-2"
+                            (onClick)="editQuestion(q)">
+                        </p-button>
+                        <p-button icon="pi pi-trash"
+                            styleClass="p-button-outlined p-button-danger"
+                            (onClick)="removeQuestion(q)">
+                        </p-button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="isShowSubmitBtn"
+                class="w-100 flex justify-content-center mt-4">
+                <p-button icon="pi pi-upload"
+                    styleClass="p-button-raised"
+                    label="Xác nhận tải lên"
+                    (onClick)="uploadQuestion()">
+                </p-button>
+            </div>
+        </div>
+    </div>
+</p-dialog>
+
+<lms-question-details-dialog #detailsDialog
+    (save)="saveQuestion($event)">
+</lms-question-details-dialog>

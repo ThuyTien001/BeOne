@@ -1,0 +1,162 @@
+<div class="surface-0 flex justify-content-center">
+    <div id="public-page-wrapper" class="overflow-auto h-screen">
+        <!-- Topbar -->
+        <div id="top-bar" class="topbar-section w-screen py-3 px-3 mx-0 xl:px-6 
+                flex align-items-center justify-content-between 
+                sticky top-0 
+                bg-white z-5">
+            <a class="flex align-items-center" href="/public/landing">
+                <lms-main-logo className="mr-1 lg:mr-2 w-10rem lg:w-15rem"></lms-main-logo>
+            </a>
+
+            <a pRipple class="cursor-pointer block xl:hidden text-700 mr-2" pStyleClass="@next" enterClass="hidden"
+                leaveToClass="hidden" [hideOnOutsideClick]="true">
+                <i class="pi pi-bars text-4xl"></i>
+            </a>
+            <div id="topbar-menu-container" class="hidden xl:flex absolute xl:static 
+                w-full flex-grow-1 xl:w-auto xl:flex-grow-0
+                align-items-center justify-content-between
+                left-0 px-6 xl:px-0 z-2
+                surface-0"
+                style="top:5.56rem">
+                <ul
+                    class="list-none p-0 m-0 flex xl:align-items-center select-none 
+                    flex-column xl:flex-row cursor-pointer">
+                    <li (click)="onNavigate()">
+                        <a pRipple [routerLink]="'study-center'" routerLinkActive="menu-active"
+                            class="flex m-0 xl:mr-3 px-0 py-3 text-xl font-bold line-height-1 text-primary">
+                            <span>HỌC TẠI TRUNG TÂM</span>
+                        </a>
+                    </li>
+                    <li (click)="onNavigate()">
+                        <a pRipple
+                            class="flex m-0 xl:mx-3 px-0 py-3 text-xl font-bold line-height-1 text-primary">
+                            <span>HỌC ONLINE</span>
+                        </a>
+                    </li>
+                    <li (click)="onNavigate()">
+                        <a pRipple [routerLink]="'teachers'" routerLinkActive="menu-active"
+                            class="flex m-0 xl:mx-3 px-0 py-3 text-xl font-bold line-height-1 text-primary">
+                            <span>GIÁO VIÊN</span>
+                        </a>
+                    </li>
+                    <li (click)="onNavigate()">
+                        <a pRipple [routerLink]="'list-posts'" routerLinkActive="menu-active"
+                            class="flex m-0 xl:ml-3 px-0 py-3 text-xl font-bold line-height-1 text-primary">
+                            <span>HOẠT ĐỘNG</span>
+                        </a>
+                    </li>
+                </ul>
+                <div class="flex justify-content-between 
+                    border-top-1 xl:border-top-none surface-border 
+                    py-3 xl:py-0 xl:pl-6 mt-3 xl:mt-0 
+                    white-space-nowrap">
+                    <button pButton pRipple label="Đăng nhập"
+                        class="font-light line-height-2"
+                        (click)="router.navigate(['/auth/login'])">
+                    </button>
+                    <button pButton pRipple label="Đăng ký"
+                        class="p-button-outlined ml-3"
+                        (click)="router.navigate(['/auth/sign-up'])">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <router-outlet></router-outlet>
+
+        <!-- Footer -->
+        <div class="pt-6 footer-section relative">
+            <div class="grid justify-content-between py-4 px-4 mx-0 text-primary">
+                <div class="col-12 md:col-3" style="margin-top:-1.5rem;">
+                    <div class="flex flex-wrap align-items-center 
+                    justify-content-center md:justify-content-start
+                    cursor-pointer 
+                    mb-5 md:mb-0 ">
+                        <lms-main-logo className="w-full max-w-20rem"></lms-main-logo>
+                    </div>
+                </div>
+                <div class="col-12 md:col-9 p-0 z-2">
+                    <div class="grid text-left ml-4 md:ml-0 footer-link-group">
+                        <div class="col-12 md:col-3 lg:col-2">
+                            <h5 class="font-bold text-xl line-height-3 mb-3 text-primary">
+                                GIỚI THIỆU
+                            </h5>
+                            <a [routerLink]="'landing'" fragment="main"
+                                class="line-height-3 text-lg block cursor-pointer mb-2 text-color">
+                                Thông tin về trung tâm
+                            </a>
+                            <a [routerLink]="'landing'" fragment="features"
+                                class="line-height-3 text-lg block cursor-pointer mb-2 text-color">
+                                Đặc điểm nổi bật
+                            </a>
+                            <a [routerLink]="'landing'" fragment="teachers"
+                                class="line-height-3 text-lg block cursor-pointer mb-2 text-color">
+                                Giáo viên tiêu biểu
+                            </a>
+                        </div>
+                        <div class="col-12 md:col-3 lg:col-2">
+                            <h4 class="font-bold text-xl line-height-3 mb-3 text-primary">HỌC TẠI TRUNG TÂM</h4>
+                            <a [routerLink]="'study-center'" fragment="list"
+                                class="line-height-3 text-lg block cursor-pointer mb-2 text-color">
+                                Thời khóa biểu
+                            </a>
+                            <a [routerLink]="'study-center'" fragment="maps"
+                                class="line-height-3 text-lg block cursor-pointer mb-2 text-color">
+                                Địa điểm
+                            </a>
+                        </div>
+                        <div class="col-12 md:col-3 lg:col-2">
+                            <h4 class="font-bold text-xl line-height-3 mb-3 text-primary">HỌC ONLINE</h4>
+                            <a class="line-height-3 text-lg block cursor-pointer mb-2 text-color"
+                                (click)="router.navigate(['/auth/login'])">
+                                Đăng nhập
+                            </a>
+                            <a class="line-height-3 text-lg block cursor-pointer mb-2 text-color"
+                                (click)="router.navigate(['/auth/sign-up'])">
+                                Đăng ký
+                            </a>
+                        </div>
+                        <div class="col-12 md:col-3 lg:col-2">
+                            <h4 class="font-bold text-lg line-height-3 mb-3 text-primary">HOẠT ĐỘNG</h4>
+                            <a [routerLink]="'list-posts'" fragment="incoming"
+                                class="line-height-3 text-lg block cursor-pointer mb-2 text-color">
+                                Sắp diễn ra
+                            </a>
+                            <a [routerLink]="'list-posts'" fragment="tips"
+                                class="line-height-3 text-lg block cursor-pointer mb-2 text-color">
+                                Bí quyết
+                            </a>
+                            <a [routerLink]="'list-posts'" fragment="info"
+                                class="line-height-3 text-lg block cursor-pointer mb-2 text-color">
+                                Tin tức
+                            </a>
+                        </div>
+                        <div class="col-12">
+                            <h4 class="font-bold text-2xl text-primary mb-2">
+                                Công ty cổ phần giáo dục Be One
+                            </h4>
+                            <div class="text-lg mb-2 text-color">
+                                Lầu 1B 116 Nguyễn Thị Minh Khai, Phường Võ Thị Sáu, Quận 3, Thành phố Hồ Chí Minh.
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <h4 class="font-bold text-2xl text-primary mb-2">
+                                Trung tâm
+                            </h4>
+                            <div class="text-lg mb-2 text-color">
+                                43 Tân Canh, P. 1, Tân Bình, Thành phố Hồ Chí Minh.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-image hidden lg:block">
+                <img src="../../../assets/images/landing/footer-1.webp" alt="footer">
+            </div>
+        </div>
+    </div>
+
+    <lms-side-btn-group></lms-side-btn-group>
+
+</div>

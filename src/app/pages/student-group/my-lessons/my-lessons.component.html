@@ -1,0 +1,89 @@
+<div>
+    <div class="mb-5">
+        <h4 class="font-bold">Khóa học của tôi</h4>
+    </div>
+    <div class="flex align-items-center justify-content-between mb-6">
+        <div class="flex gap-4">
+            <div class="flex align-items-center">
+                <div class="w-6rem font-bold">Môn học</div>
+                <p-dropdown [options]="filterListSubjects"
+                    [(ngModel)]="filter.subject"
+                    optionLabel="name"
+                    styleClass="w-12rem">
+                </p-dropdown>
+            </div>
+            <div class="flex align-items-center">
+                <div class="w-6rem font-bold">Lớp học</div>
+                <p-dropdown [options]="filterListClasses"
+                    [(ngModel)]="filter.class"
+                    optionLabel="name"
+                    styleClass="w-12rem">
+                </p-dropdown>
+            </div>
+            <button pButton pRipple
+                icon="pi pi-search"
+                class="p-button-sm btn-search"
+                (click)="onSearch()">
+            </button>
+        </div>
+        <div>
+            <p-paginator 
+                [rows]="perPage"
+                [totalRecords]="totalRecords"
+                [showPageLinks]="true"
+                [showFirstLastIcon]="false"
+                [showCurrentPageReport]="true"
+                currentPageReportTemplate="Trang {currentPage} / {totalPages}"
+                [pageLinkSize]="3">
+            </p-paginator>
+        </div>
+    </div>
+    <div class="grid" *ngIf="isLoading.value">
+        <div class="col-12 lg:col-6">
+            <div class="card card-shadow flex flex-column">
+                <p-skeleton width="70%" height="2rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="45%" styleClass="mb-4"></p-skeleton>
+                <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+            </div>
+        </div>
+        <div class="col-12 lg:col-6">
+            <div class="card card-shadow flex flex-column">
+                <p-skeleton width="70%" height="2rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="45%" styleClass="mb-4"></p-skeleton>
+                <p-skeleton width="7rem" styleClass="mb-2"></p-skeleton>
+            </div>
+        </div>
+    </div>
+    <div class="grid" [ngClass]="{'hidden': isLoading.value}">
+        <div *ngFor="let item of listSubjects" class="col-12 lg:col-6">
+            <div class="card card-shadow flex flex-column p-0">
+                <div class="flex justify-content-between px-5 pt-5 pb-4">
+                    <div>
+                        <h4 class="font-bold mb-2">
+                            {{ item.getFormattedValue('name') }}
+                        </h4>
+                        <p class="text-lg">
+                            <span class="font-bold">Giáo viên: </span>
+                            {{ item.getFormattedValue('teacher') }}
+                        </p>
+                        <p class="text-600">Đã học: {{ item.getFormattedValue('progressLabel') }} bài</p>
+                    </div>
+
+                    <div class="flex align-items-center justify-content-center">
+                        <button pButton pRipple
+                            icon="icomoon icon-book-play"
+                            label="Học Tiếp"
+                            class="btn-view-lesson"
+                            (click)="loadDetails(item)">
+                        </button>
+                    </div>
+                </div>
+                <div class="custom-progress-bar">
+                    <p-progressBar [value]="item.getFormattedValue('progressValue')"
+                        [color]="item.getFormattedValue('isCompleted') ? 'var(--green-500)' : 'var(--primary-color)'">
+                    </p-progressBar>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

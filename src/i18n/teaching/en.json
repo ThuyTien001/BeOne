@@ -1,0 +1,24 @@
+{
+	"excerise": {
+		"add_question": "Add question",
+		"create_title": "Create new Exercise",
+		"detail_title": "",
+		"status": {
+			"completed": "Completed",
+			"pending": "Pending",
+			"processing": "Processing"
+		}
+	},
+	"question": {
+		"create_title": "Create new question",
+		"detail_title": "Question Details",
+		"list_question_title": "List of Questions",
+		"select_dialog_title": "Select question",
+		"type": {
+			"multiple": "Multiple",
+			"number": "Number",
+			"single": "Single",
+			"text": "Text"
+		}
+	}
+}

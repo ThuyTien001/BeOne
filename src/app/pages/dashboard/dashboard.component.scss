@@ -1,0 +1,11 @@
+.nav-icons {
+    .nav-item {
+        transition-property: color;
+        transition-duration: 300ms;
+        color: var(--blue-200);
+    }
+
+    .nav-item-active {
+        color: var(--blue-600);
+    }
+}

@@ -1,0 +1,28 @@
+:host ::ng-deep .pi-eye,
+:host ::ng-deep .pi-eye-slash {
+    transform: scale(1.6);
+    margin-right: 1rem;
+    color: var(--primary-color) !important;
+}
+
+.phone-number-input {
+    .p-inputgroup-addon {
+        color: var(--text-color);
+    }
+
+    // Hide arrows of input type="number"
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+
+}

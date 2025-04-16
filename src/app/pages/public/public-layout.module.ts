@@ -26,32 +26,32 @@ import { SideBtnGroupComponent } from './side-btn-group/side-btn-group.component
         provideRouter([
             {
                 path: '',
-                title: 'BeOne',
+                title: 'Training',
                 component: PublicLayoutComponent,
                 children: [
                     {
                         path: 'landing',
-                        title: 'BeOne - Trang chủ',
+                        title: 'Training - Trang chủ',
                         loadComponent: () => import('./landing/landing.component').then(m => m.LandingComponent)
                     },
                     {
                         path: 'study-center',
-                        title: 'BeOne - Học tại trung tâm',
+                        title: 'Training - Học tại trung tâm',
                         loadComponent: () => import('./study-center/study-center.component').then(m => m.StudyCenterComponent)
                     },
                     {
                         path: 'teachers',
-                        title: 'BeOne - Giáo Viên',
+                        title: 'Training - Giáo Viên',
                         loadComponent: () => import('./teachers/teachers.component').then(m => m.TeachersComponent)
                     },
                     {
                         path: 'list-posts',
-                        title: 'BeOne - Tin tức và sự kiện',
+                        title: 'Training - Tin tức và sự kiện',
                         loadComponent: () => import('./list-posts/list-posts.component').then(m => m.ListPostsComponent)
                     },
                     {
                         path: 'post/:id',
-                        title: 'BeOne - Tin tức và sự kiện',
+                        title: 'Training - Tin tức và sự kiện',
                         loadComponent: () => import('./post-details/post-details.component').then(m => m.PostDetailsComponent)
                     },
                     { path: '**', redirectTo: 'landing' },

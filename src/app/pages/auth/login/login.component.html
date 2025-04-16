@@ -26,7 +26,7 @@
                 </div>
 
 
-                <div [hidden]="loginType !== 'pwd'" class="mb-4">
+                <div class="mb-4">
                     <label for="password1" class="block text-900 font-medium mb-2">
                         {{ 'auth.password' | translate }}
                     </label>
@@ -38,7 +38,7 @@
                         inputStyleClass="w-full p-3 md:w-30rem">
                     </p-password>
                 </div>
-                <div [hidden]="loginType !== 'code'">
+                <!-- <div [hidden]="loginType !== 'code'">
                     <lms-send-code-btn #sendCodeBtn
                         [phoneNumber]="phoneNumber">
                     </lms-send-code-btn>
@@ -48,7 +48,7 @@
                     (click)="changeLoginType()">
                     <span *ngIf="loginType === 'code'">{{ 'auth.login_by_password' | translate }}</span>
                     <span *ngIf="loginType === 'pwd'">{{ 'auth.login_by_code' | translate }}</span>
-                </a>
+                </a> -->
 
                 <div [ngClass]="{'mt-3': errMessages?.length, 'mt-5': !errMessages?.length}">
                     <p-messages [(value)]="errMessages" [enableService]="false"></p-messages>

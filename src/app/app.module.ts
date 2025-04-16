@@ -81,12 +81,12 @@ export function createTranslateLoader(http: HttpClient) {
                     children: [
                         {
                             path: 'sign-up',
-                            title: 'BeOne - Đăng ký',
+                            title: 'Training - Đăng ký',
                             loadComponent: () => import('./pages/auth/sign-up/sign-up.component').then(m => m.SignUpComponent)
                         },
                         {
                             path: 'login',
-                            title: 'BeOne - Đăng nhập',
+                            title: 'Training - Đăng nhập',
                             loadComponent: () => import('./pages/auth/login/login.component').then(m => m.LoginComponent)
                         },
                         { path: '**', redirectTo: '/misc/404' },
@@ -94,27 +94,27 @@ export function createTranslateLoader(http: HttpClient) {
                 },
                 {
                     path: 'pages',
-                    title: 'BeOne',
-                    component: AppLayoutComponent,
-                    canActivate: [AuthGuard],
+                    title: 'Training',
+                    // component: AppLayoutComponent,
+                    // canActivate: [AuthGuard],
                     children: [
                         {
                             path: 'dashboard',
-                            title: 'BeOne - Tổng quát',
+                            title: 'Training - Tổng quát',
                             data: { breadcrumb: 'Tổng quát' },
                             loadComponent: () => import('./pages/dashboard/dashboard.component')
                                 .then(m => m.DashboardComponent)
                         },
                         {
                             path: 'profile',
-                            title: 'BeOne - Lý lịch học sinh',
+                            title: 'Training - Lý lịch học sinh',
                             data: { breadcrumb: 'Lý lịch học sinh' },
                             loadComponent: () => import('./pages/profile/profile.component')
                                 .then(m => m.ProfileComponent)
                         },
                         {
                             path: 'questions',
-                            title: 'BeOne - Quản lý câu hỏi',
+                            title: 'Training - Quản lý câu hỏi',
                             data: { breadcrumb: 'Câu hỏi' },
                             loadComponent: () => import('./pages/list-questions/list-questions.component')
                                 .then(m => m.ListQuestionsComponent)
@@ -125,14 +125,14 @@ export function createTranslateLoader(http: HttpClient) {
                             children: [
                                 {
                                     path: 'list',
-                                    title: 'BeOne - Soạn bài tập',
+                                    title: 'Training - Soạn bài tập',
                                     data: { breadcrumb: '' },
                                     loadComponent: () => import('./pages/exercises/list-exercises.component')
                                         .then(m => m.ListExercisesComponent),
                                 },
                                 {
                                     path: 'details/:id',
-                                    title: 'BeOne - Chi tiết bài tập',
+                                    title: 'Training - Chi tiết bài tập',
                                     data: { breadcrumb: '...' },
                                     loadComponent: () => import('./pages/exercises/view-exercises.component')
                                         .then(m => m.ViewExerciseComponent),
@@ -148,13 +148,13 @@ export function createTranslateLoader(http: HttpClient) {
                                 {
                                     path: 'list',
                                     data: { breadcrumb: '' },
-                                    title: 'BeOne - Làm bài tập',
+                                    title: 'Training - Làm bài tập',
                                     loadComponent: () => import('./pages/do-exercises/list-do-exercises.component')
                                         .then(m => m.ListDoExercisesComponent),
                                 },
                                 {
                                     path: 'details/:id',
-                                    title: 'BeOne - Chi tiết bài tập',
+                                    title: 'Training - Chi tiết bài tập',
                                     data: { breadcrumb: '...' },
                                     loadComponent: () => import('./pages/do-exercises/view-do-exercises.component')
                                         .then(m => m.ViewDoExerciseComponent),
@@ -164,33 +164,33 @@ export function createTranslateLoader(http: HttpClient) {
                         },
                         {
                             path: 'my-lessons',
-                            title: 'BeOne - Khóa học của tôi',
+                            title: 'Training - Khóa học của tôi',
                             data: { breadcrumb: 'Khóa học của tôi' },
                             children: [
                                 {
                                     path: 'list',
                                     data: { breadcrumb: '' },
-                                    title: 'BeOne - Khóa học của tôi',
+                                    title: 'Training - Khóa học của tôi',
                                     loadComponent: () => import('./pages/student-group/my-lessons/my-lessons.component')
                                         .then(m => m.MyLessonsComponent),
                                 },
                                 {
                                     path: 'details/:subjectId',
-                                    title: 'BeOne - Khóa học',
+                                    title: 'Training - Khóa học',
                                     data: { breadcrumb: '' },
                                     loadComponent: () => import('./pages/student-group/my-lessons/view-lesson.component')
                                         .then(m => m.ViewLessonComponent),
                                 },
                                 {
                                     path: 'details/:subjectId/:chapterId',
-                                    title: 'BeOne - Khóa học',
+                                    title: 'Training - Khóa học',
                                     data: { breadcrumb: '' },
                                     loadComponent: () => import('./pages/student-group/my-lessons/view-lesson.component')
                                         .then(m => m.ViewLessonComponent),
                                 },
                                 {
                                     path: 'details/:subjectId/:chapterId/:lessonId',
-                                    title: 'BeOne - Khóa học',
+                                    title: 'Training - Khóa học',
                                     data: { breadcrumb: '' },
                                     loadComponent: () => import('./pages/student-group/my-lessons/view-lesson.component')
                                         .then(m => m.ViewLessonComponent),
@@ -200,7 +200,7 @@ export function createTranslateLoader(http: HttpClient) {
                         },
                     ]
                 },
-                { path: '', title: 'BeOne', pathMatch: 'full', component: RedirectComponent },
+                { path: '', title: 'Training', pathMatch: 'full', component: RedirectComponent },
                 { path: '**', redirectTo: '/misc/404' },
             ],
             {

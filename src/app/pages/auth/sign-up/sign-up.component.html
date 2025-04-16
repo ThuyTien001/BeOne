@@ -33,9 +33,9 @@
                 </div>
 
                 <!-- Verify Code -->
-                <lms-send-code-btn #sendCodeBtn
+                <!-- <lms-send-code-btn #sendCodeBtn
                     [phoneNumber]="phoneNumber">
-                </lms-send-code-btn>
+                </lms-send-code-btn> -->
 
 
                 <!-- Password -->
@@ -61,7 +61,9 @@
                     [toggleMask]="true"
                     inputStyleClass="w-full md:w-30rem">
                 </p-password>
-
+                <div *ngIf="passwordConfirm && passwordConfirm !== password" class="text-red-500 text-sm mt-1">
+                    {{ 'Mật khẩu xác nhận không khớp' | translate }}
+                </div>
                 <div class="mt-6">
                     <p-messages [(value)]="errMessages" [enableService]="false"></p-messages>
                     <button pButton pRipple

@@ -33,7 +33,7 @@ import { SendCodeButtonComponent } from '../send-code-btn/send-code-btn.componen
         SpinnerModule,
         MessagesModule,
         InputMaskModule,
-        SendCodeButtonComponent,
+        // SendCodeButtonComponent,
     ],
 })
 export class SignUpComponent {
@@ -74,25 +74,25 @@ export class SignUpComponent {
     }
 
     validateData() {
+        // this.errMessages = [];
         if (!this.validatePhoneNumber()) {
             return false;
         }
-        let verifyCode = this.sendCodeBtn.getVerifyCode();
-        if (!verifyCode) {
-            this.errMessages = [{
-                severity: 'error',
-                summary: this.translateService.instant('auth.invalid_code'),
-            }];
-            return false;
-        }
-        if (!this.password || !this.passwordConfirm || this.password !== this.passwordConfirm) {
+        // let verifyCode = this.sendCodeBtn.getVerifyCode();
+        // if (!verifyCode) {
+        //     this.errMessages = [{
+        //         severity: 'error',
+        //         summary: this.translateService.instant('auth.invalid_code'),
+        //     }];
+        //     return false;
+        // }
+        if (!this.password || !this.passwordConfirm) {
             this.errMessages = [{
                 severity: 'error',
                 summary: this.translateService.instant('auth.invalid_password'),
             }];
+            return true;
         }
-
-        return true;
     }
 
     async signUp() {

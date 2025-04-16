@@ -22,14 +22,20 @@
     img {
         position: absolute;
         bottom: 0;
-        right: 5%;
+        right: 0%;
         z-index: 0;
     }
 
     .btn-find-class {
-        padding: 1rem 3rem;
-        background-color: #eb203e;
+        padding: 0.5rem 1.5rem;
+        background-color: #FF6000;
+        margin-top: 20%;
     }
+    // ::ng-deep .custom-orange-button {
+    //     background-color: #FF6000 !important;
+    //     border-color: #FF6000 !important;
+    //     color: white !important;
+    //   }
 
 
 
@@ -58,8 +64,9 @@
     }
 }
 
-.teacher-section {
-    background: url('/assets/images/landing/bg-teacher-section.webp');
+.course-section {
+    // background: url('/assets/images/landing/bg-teacher-section.webp');
+    background-color: #ffffff;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

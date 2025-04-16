@@ -14,6 +14,7 @@ import { DGF } from '@app/@shared/digiforce';
 import { SkeletonModule } from 'primeng/skeleton';
 import { TranslateService } from '@ngx-translate/core';
 import { PublicPageService } from '../shared';
+import { title } from 'process';
 
 @Component({
     templateUrl: './landing.component.html',
@@ -25,7 +26,7 @@ import { PublicPageService } from '../shared';
         ChartModule,
         PanelModule,
         ButtonModule,
-        MainLogoComponent,
+        // MainLogoComponent,
         InputTextModule,
         CarouselModule,
         SkeletonModule,
@@ -37,40 +38,123 @@ export class LandingComponent implements OnInit {
 
     firstPost: any = {};
     listPost: Array<any> = [];
+    displayedItems = [];
+    displayedFeatured = [];
+    loadMore() {
+        const next = this.displayedItems.length + 3;
+        this.displayedItems = this.listFeaturedAction.slice(0, next);
+      }
+      loadMoreFuture() {
+        const next = this.displayedFeatured.length + 3;
+        this.displayedFeatured = this.listFeatured.slice(0, next);
+      }
     listFeatured = [
         {
-            url: 'assets/images/landing/adv2-1.svg',
-            title: 'Lớp quy mô nhỏ',
-            content: '15 học viên trở xuống',
+            url: 'assets/images/landing/Item1.png',
+            title: 'An toàn vận hành lò hơi - Bảo vệ an toàn, nâng tầm chất lượng công việc',
+            content: '1.200.000 VND',
         },
         {
-            url: 'assets/images/landing/adv2-2.svg',
-            title: 'Ứng dụng công nghệ',
-            content: 'Trong dạy và học',
+            url: 'assets/images/landing/Item2.png',
+            title: 'Xây dựng đại xứ bán hàng doanh nghiệp bằng ứng dụng AI',
+            content: '1.200.000 VND',
         },
         {
-            url: 'assets/images/landing/adv2-3.svg',
-            title: 'Giáo viên sư phạm',
-            content: 'Giàu kinh nghiệm giảng dạy',
+            url: 'assets/images/landing/Item3.png',
+            title: 'Kỹ năng đàm phán và thương lượng',
+            content: '1.200.000 VND',
+        },
+        {
+            url: 'assets/images/landing/Item1.png',
+            title: 'An toàn vận hành lò hơi - Bảo vệ an toàn, nâng tầm chất lượng công việc',
+            content: '1.200.000 VND',
+        },
+        {
+            url: 'assets/images/landing/Item2.png',
+            title: 'Xây dựng đại xứ bán hàng doanh nghiệp bằng ứng dụng AI',
+            content: '1.200.000 VND',
+        },
+        {
+            url: 'assets/images/landing/Item3.png',
+            title: 'Kỹ năng đàm phán và thương lượng',
+            content: '1.200.000 VND',
+        },
+        {
+            url: 'assets/images/landing/Item1.png',
+            title: 'An toàn vận hành lò hơi - Bảo vệ an toàn, nâng tầm chất lượng công việc',
+            content: '1.200.000 VND',
+        },
+        {
+            url: 'assets/images/landing/Item2.png',
+            title: 'Xây dựng đại xứ bán hàng doanh nghiệp bằng ứng dụng AI',
+            content: '1.200.000 VND',
+        },
+        {
+            url: 'assets/images/landing/Item3.png',
+            title: 'Kỹ năng đàm phán và thương lượng',
+            content: '1.200.000 VND',
+        },
+        {
+            url: 'assets/images/landing/Item3.png',
+            title: 'Kỹ năng đàm phán và thương lượng',
+            content: '1.200.000 VND',
         },
     ];
-    listTeachers = [
+    listFeaturedAction =[
         {
-            url: 'assets/images/landing/teacher-1.png',
-            name: 'GV. NGUYỄN KIM ANH',
-            position: 'Giáo viên Toán 6',
+            url: 'assets/images/landing/Item4.png',
+            title: 'Cơ hội nhận quà khi bình chọn sáng kiến khoa học 2025',
         },
         {
-            url: 'assets/images/landing/teacher-2.png',
-            name: 'GV. LÊ QUANG TUẤN',
-            position: 'Trưởng ban học thuật',
+            url: 'assets/images/landing/Item5.png',
+            title: 'Các nhà khoa học VinFuture được vinh danh tại Breakthrough 2025'
         },
         {
-            url: 'assets/images/landing/teacher-3.png',
-            name: 'GV. LÊ KIM PHƯỢNG',
-            position: 'Giáo viên Toán 11',
+            url: 'assets/images/landing/Item6.png',
+            title: '\'Tiến sĩ giá đỗ biến\' tài sản trí tuệ thành tiền'
         },
+        {
+            url: 'assets/images/landing/Item4.png',
+            title: 'Cơ hội nhận quà khi bình chọn sáng kiến khoa học 2025',
+        },
+        {
+            url: 'assets/images/landing/Item5.png',
+            title: 'Các nhà khoa học VinFuture được vinh danh tại Breakthrough 2025'
+        },
+        {
+            url: 'assets/images/landing/Item6.png',
+            title: '\'Tiến sĩ giá đỗ biến\' tài sản trí tuệ thành tiền'
+        },
+        {
+            url: 'assets/images/landing/Item4.png',
+            title: 'Cơ hội nhận quà khi bình chọn sáng kiến khoa học 2025',
+        },
+        {
+            url: 'assets/images/landing/Item5.png',
+            title: 'Các nhà khoa học VinFuture được vinh danh tại Breakthrough 2025'
+        },
+        {
+            url: 'assets/images/landing/Item6.png',
+            title: '\'Tiến sĩ giá đỗ biến\' tài sản trí tuệ thành tiền'
+        }
     ];
+    // listTeachers = [
+    //     {
+    //         url: 'assets/images/landing/teacher-1.png',
+    //         name: 'GV. NGUYỄN KIM ANH',
+    //         position: 'Giáo viên Toán 6',
+    //     },
+    //     {
+    //         url: 'assets/images/landing/teacher-2.png',
+    //         name: 'GV. LÊ QUANG TUẤN',
+    //         position: 'Trưởng ban học thuật',
+    //     },
+    //     {
+    //         url: 'assets/images/landing/teacher-3.png',
+    //         name: 'GV. LÊ KIM PHƯỢNG',
+    //         position: 'Giáo viên Toán 11',
+    //     },
+    // ];
     responsiveOptions = [
         {
             breakpoint: '991px',
@@ -98,7 +182,9 @@ export class LandingComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.loadListPost();
+        // this.loadListPost();
+        this.displayedItems = this.listFeaturedAction.slice(0, 3); // Hiện 3 cái đầu
+        this.displayedFeatured = this.listFeatured.slice(0, 3);
     }
 
     async loadListPost() {

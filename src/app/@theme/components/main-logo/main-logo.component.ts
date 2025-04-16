@@ -4,13 +4,13 @@ import { LayoutService } from '@app/@theme/services';
 
 @Component({
     selector: 'lms-main-logo',
-    standalone: true, 
+    standalone: true,
     imports: [
         CommonModule,
     ],
     template: `
         <img src="assets/images/logo/{{_logo}}"
-            alt="LMS Logo"
+            alt="TRAINING Logo"
             [ngStyle]="{width: width, height: height}"
             [class]="className">
     `,
@@ -26,9 +26,9 @@ export class MainLogoComponent {
     get _logo() {
         let input = this.logo ? this.logo : this.layoutService.config.colorScheme === 'light' ? 'logo-normal' : 'logo-white';
         return {
-            'logo-normal': 'logo-beone.png',
-            'logo-white': 'logo-beone-text-white.png',
-            'logo-mini': 'logo-beone-mini.png',
-        }[input] || 'logo-beone.png';
+            'logo-normal': 'Training.png',
+            // 'logo-white': 'logo-beone-text-white.png',
+            // 'logo-mini': 'logo-beone-mini.png',
+        }[input] || 'Training.png';
     }
 }

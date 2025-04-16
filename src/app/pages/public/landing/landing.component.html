@@ -1,27 +1,32 @@
 <div id="main" class="hero-section relative">
-    <div class="flex flex-column px-4 md:pt-0 md:w-9 lg:w-6 absolute md:relative z-2">
-        <h1 class="text-primary font-bold 
-        text-4xl lg:text-6xl mb-0
+    <div class="flex flex-column ml-auto px-4 md:pt-0 md:w-9 lg:w-6 absolute md:relative z-2"
+        style="left: 5%; bottom: 10%;"
+    >
+        <!-- <div class="flex flex-col items-end px-4 md:pt-0 md:w-9 lg:w-6 ml-auto absolute md:relative z-2 text-right"> -->
+        <h1 class="font-bold
+        text-4xl lg:text-4xl mb-0 text-white
         scalein animation-duration-500">
-            TRUNG TÂM <br>TOÁN CÔNG NGHỆ
+            TRUNG TÂM THÔNG TIN <br/> KHOA HỌC VÀ CÔNG NGHỆ CẦN THƠ
         </h1>
-        <h3 class="scalein animation-duration-500 my-4 lg:w-10">
-            Dành cho học sinh muốn nâng cao tư duy toán theo chương trình phổ thông cơ sở
-        </h3>
+        <h5 class="scalein text-white animation-duration-500 my-4 lg:w-10">
+            Cung cấp các chương trình đào tạo kỹ năng, <br/>
+            nâng cao nghiệp vụ phù hợp với <br/> nhu cầu thực tế của đơn vị, doanh nghiệp
+        </h5>
         <button pButton pRipple label="Tìm lớp học"
-            class="p-button-danger w-min white-space-nowrap text-3xl 
-            scalein animation-duration-500 btn-find-class">
+            class="p-button-danger w-min white-space-nowrap text-xl custom-orange-button
+            scalein animation-duration-500 btn-find-class"
+            >
         </button>
     </div>
-    <img src="assets/images/landing/top-background-2.webp" alt="top-background"
-        class="hidden xl:block xl:w-8 z-1">
+    <img src="assets/images/landing/Training.jpg" alt="top-background"
+        class="absolute inset-0 w-full h-full object-cover z-0">
 </div>
 
-<!-- Giáo viên tiêu biểu -->
-<div id="teachers" class="teacher-section bg-primary w-screen relative flex flex-column align-items-center 
-    pb-6 xl:pb-8">
+<!-- Khóa học nỗi bật -->
+<!-- <div id="course" class="course-section bg-primary w-screen relative flex flex-column align-items-center
+        xl:pb-8">
     <h3 class="font-bold text-white mt-8 mb-5 xl:mt-8 text-4xl xl:text-6xl">
-        Giáo viên tiêu biểu
+        Khóa học tiêu biểu
     </h3>
     <p class="px-4 lg:px-0 lg:w-8 xl:w-6 text-center text-xl lg:text-2xl">
         Chúng tôi tự hào giới thiệu đến bạn đội ngũ giáo viên tiêu biểu của chúng tôi, những người đam mê
@@ -49,23 +54,23 @@
             </ng-template>
         </p-carousel>
     </div>
-</div>
+</div> -->
 
 <!-- Đặc điểm nổi bật -->
 <div id="features" class="feature-section w-screen relative flex flex-column align-items-center pb-6 xl:pb-8">
-    <div class="w-full h-full absolute background-symbol-3 opacity-20"></div>
-    <h3 class="font-bold text-primary mt-8 mb-6 xl:mt-8 text-4xl xl:text-6xl">
-        Đặc điểm nổi bật
+    <!-- <div class="w-full h-full absolute background-symbol-3 opacity-20"></div> -->
+    <h3 class="font-bold text-primary mb-5 xl:mt-5 text-4xl xl:text-4xl">
+        KHÓA HỌC NỖI BẬT
     </h3>
     <div class="flex justify-content-center w-full">
-        <div class="grid md:w-8 h-auto">
-            <div *ngFor="let fItem of listFeatured"
+        <div class="grid md:w-12 lg:w-12">
+            <div *ngFor="let fItem of displayedFeatured"
                 class="col-12 md:col-4 flex flex-column">
                 <div class="w-full h-10rem lg:h-20rem border-round-2xl mx-auto bg-contain bg-no-repeat bg-center"
                     [ngStyle]="{background: 'url(' + fItem.url + ')'}">
                 </div>
-                <p class="text-center text-primary 
-                    font-bold text-3xl 
+                <p class="text-center text-primary
+                    font-bold text-lg
                     px-4 mt-3 mb-0">
                     {{ fItem.title }}
                 </p>
@@ -75,11 +80,51 @@
             </div>
         </div>
     </div>
+        <div class="text-center mt-4">
+            <button *ngIf="displayedFeatured.length < listFeatured.length"
+                    (click)="loadMoreFuture()"
+                    class="p-button p-component p-button-outlined">
+            Xem thêm <i class="pi pi-chevron-down ml-2"></i>
+            </button>
+        </div>
+</div>
+
+<!-- Hoạt động nỗi bật -->
+<div id="features" class="feature-section w-screen relative flex flex-column align-items-center pb-6 xl:pb-8">
+    <!-- <div class="w-full h-full absolute background-symbol-3 opacity-20"></div> -->
+    <h3 class="font-bold text-primary mb-5 xl:mt-5 text-4xl xl:text-4xl">
+        HOẠT ĐỘNG NỖI BẬT
+    </h3>
+    <div class="flex justify-content-center w-full">
+        <div class="grid md:w-12 lg:w-12">
+            <div *ngFor="let fItem of displayedItems"
+                class="col-12 md:col-4 flex flex-column">
+                <div class="w-full h-10rem lg:h-20rem border-round-2xl mx-auto bg-contain bg-no-repeat bg-center"
+                    [ngStyle]="{background: 'url(' + fItem.url + ')'}">
+                </div>
+                <p class="text-center text-primary
+                    font-bold text-lg
+                    px-4 mt-3 mb-0">
+                    {{ fItem.title }}
+                </p>
+                <!-- <p class="text-center font-medium text-2xl px-4 mt-2">
+                    {{ fItem.content }}
+                </p> -->
+            </div>
+        </div>
+    </div>
+        <div class="text-center mt-4">
+            <button *ngIf="displayedItems.length < listFeaturedAction.length"
+                    (click)="loadMore()"
+                    class="p-button p-component p-button-outlined">
+              Xem thêm <i class="pi pi-chevron-down ml-2"></i>
+            </button>
+        </div>
 </div>
 
 
 <!-- Hoạt động nổi bật -->
-<div class="relative flex flex-column w-screen bg-white pb-6">
+<!-- <div class="relative flex flex-column w-screen bg-white pb-6">
     <div class="w-full h-full absolute background-symbol-5 opacity-70"></div>
     <h3 class="font-bold text-primary text-center mt-8 mb-6 xl:mt-8 text-4xl xl:text-6xl z-2">
         Hoạt động nổi bật
@@ -98,7 +143,7 @@
                                 <div [class]="'post-tag ' + firstPost.tag">
                                     {{ firstPost.tagLabel }}
                                 </div>
-                                <h4 class="text-primary font-bold text-lg 
+                                <h4 class="text-primary font-bold text-lg
                                     md:px-4 mt-3 mb-0">
                                     {{ firstPost.title }}
                                 </h4>
@@ -122,7 +167,7 @@
                                 [routerLink]="'/public/post/' + post.id">
                                 <div class="card bg-white p-0 border-round-2xl w-11 mx-auto">
                                     <img src="{{ post.thumbnail }}" [alt]="post.title"
-                                        class="w-full 
+                                        class="w-full
                                         max-h-10rem
                                         md:h-auto md:max-h-5rem xl:max-h-10rem
                                         border-round-2xl border-noround-bottom mx-auto" />
@@ -182,14 +227,14 @@
                 </div>
 
             </div>
-        </div>
-
-        <!-- <div *ngIf="!isLoadingPost" class="col-12 md:col-6 md:col-offset-3 p-0">
-            <div class="flex justify-content-center">
-                <button pButton pRipple label="XEM THÊM"
-                    class="p-button-primary">
-                </button>
-            </div>
         </div> -->
-    </div>
-</div>
+
+                        <!-- <div *ngIf="!isLoadingPost" class="col-12 md:col-6 md:col-offset-3 p-0">
+                            <div class="flex justify-content-center">
+                                <button pButton pRipple label="XEM THÊM"
+                                    class="p-button-primary">
+                                </button>
+                            </div>
+                        </div> -->
+    <!-- </div>
+</div> -->

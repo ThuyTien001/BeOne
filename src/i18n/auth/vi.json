@@ -27,6 +27,7 @@
 		"username": "Tài khoản",
 		"username_placeholder": "Tài khoản",
 		"verify_code": "Mã xác nhận",
-		"verify_code_placeholder": "Nhập mã xác nhận"
+		"verify_code_placeholder": "Nhập mã xác nhận",
+        "password_not_match": "Mật khẩu xác nhận không khớp"
 	}
 }

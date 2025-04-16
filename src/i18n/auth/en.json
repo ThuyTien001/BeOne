@@ -27,6 +27,7 @@
 		"username": "Username",
 		"username_placeholder": "Username",
 		"verify_code": "Verify Code",
-		"verify_code_placeholder": "Enter verify code"
+		"verify_code_placeholder": "Enter verify code",
+        "password_not_match": "Password confirmation does not match"
 	}
 }

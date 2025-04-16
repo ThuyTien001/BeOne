@@ -30,7 +30,7 @@ const LABELS = {
     imports: [
         SharedModule,
         DividerModule,
-        MainLogoComponent,
+        // MainLogoComponent,
         SkeletonModule,
         CarouselModule,
         RouterModule,

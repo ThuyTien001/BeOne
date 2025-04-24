@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { DividerModule } from 'primeng/divider';
-import { MainLogoComponent } from '@app/@theme/components';
+// import { MainLogoComponent } from '@app/@theme/components';
 import { SharedModule } from '@app/@shared/shared.module';
 import { CarouselModule } from 'primeng/carousel';
 import { SkeletonModule } from 'primeng/skeleton';
@@ -22,7 +22,7 @@ import { filter } from 'rxjs';
     imports: [
         SharedModule,
         DividerModule,
-        MainLogoComponent,
+        // MainLogoComponent,
         SkeletonModule,
         CarouselModule,
         RouterModule,
@@ -69,7 +69,7 @@ export class ListPostsComponent {
         }
         this.router.events.pipe(
             takeUntilDestroyed(),
-            // Filter the NavigationEnd events as the breadcrumb is updated only when the route reaches its end 
+            // Filter the NavigationEnd events as the breadcrumb is updated only when the route reaches its end
             filter((event) => event instanceof NavigationEnd),
         ).subscribe(event => {
             let url: string = (event as any).url;
